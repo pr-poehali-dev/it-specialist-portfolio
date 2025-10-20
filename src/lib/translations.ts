@@ -11,7 +11,8 @@ export const translations = {
       experience: '2. Опыт работы',
       skills: '3. Технические навыки',
       portfolio: '4. Портфолио',
-      contacts: '5. Контакты'
+      game: '5. Мини-игра',
+      contacts: '6. Контакты'
     },
     prompt: 'C:\\> Выберите раздел_',
     about: {
@@ -81,7 +82,8 @@ export const translations = {
       experience: '2. Work Experience',
       skills: '3. Technical Skills',
       portfolio: '4. Portfolio',
-      contacts: '5. Contacts'
+      game: '5. Mini-game',
+      contacts: '6. Contacts'
     },
     prompt: 'C:\\> Select section_',
     about: {

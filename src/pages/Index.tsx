@@ -10,6 +10,7 @@ import ExperienceSection from '@/components/sections/ExperienceSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import PortfolioSection from '@/components/sections/PortfolioSection';
 import ContactsSection from '@/components/sections/ContactsSection';
+import SnakeGame from '@/components/games/SnakeGame';
 
 const Index = () => {
   const [lang, setLang] = useState<Language>('ru');
@@ -96,6 +97,23 @@ const Index = () => {
             backText={t.back}
             onBack={handleBackClick}
           />
+        );
+      
+      case 'game':
+        return (
+          <div className="space-y-6">
+            <div className="text-dos-green text-xl font-mono crt-effect mb-4">
+              {showContent && '>>> RETRO SNAKE GAME'}
+            </div>
+            {showContent && <SnakeGame />}
+            <button
+              onClick={handleBackClick}
+              className="text-dos-green hover:text-dos-green/80 font-mono text-sm transition-colors flex items-center gap-2"
+            >
+              <Icon name="ArrowLeft" size={16} />
+              {t.back}
+            </button>
+          </div>
         );
       
       case 'contacts':
