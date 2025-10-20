@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "Test successful contact form submission",
+      "method": "POST",
+      "path": "/",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "message": "Hello, this is a test message from the contact form."
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "message": "string",
+        "request_id": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test invalid email format",
+      "method": "POST",
+      "path": "/",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "name": "John Doe",
+        "email": "invalid-email",
+        "message": "This should fail due to invalid email"
+      },
+      "expectedStatus": 502
+    },
+    {
+      "name": "Test CORS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}

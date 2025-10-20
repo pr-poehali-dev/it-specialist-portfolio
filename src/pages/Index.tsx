@@ -56,7 +56,14 @@ const translations = {
       email: 'Email: senior.it@example.com',
       phone: 'Телефон: +7 (XXX) XXX-XX-XX',
       linkedin: 'LinkedIn: /in/senior-it-specialist',
-      github: 'GitHub: github.com/senior-it-pro'
+      github: 'GitHub: github.com/senior-it-pro',
+      formTitle: '>>> ФОРМА ОБРАТНОЙ СВЯЗИ',
+      namePlaceholder: 'Ваше имя',
+      emailPlaceholder: 'Ваш email',
+      messagePlaceholder: 'Ваше сообщение',
+      sendButton: 'Отправить',
+      successMessage: 'Сообщение отправлено!',
+      errorMessage: 'Ошибка отправки'
     },
     back: '[ ESC ] Назад в меню'
   },
@@ -109,7 +116,14 @@ const translations = {
       email: 'Email: senior.it@example.com',
       phone: 'Phone: +7 (XXX) XXX-XX-XX',
       linkedin: 'LinkedIn: /in/senior-it-specialist',
-      github: 'GitHub: github.com/senior-it-pro'
+      github: 'GitHub: github.com/senior-it-pro',
+      formTitle: '>>> CONTACT FORM',
+      namePlaceholder: 'Your name',
+      emailPlaceholder: 'Your email',
+      messagePlaceholder: 'Your message',
+      sendButton: 'Send',
+      successMessage: 'Message sent!',
+      errorMessage: 'Send error'
     },
     back: '[ ESC ] Back to menu'
   }
@@ -160,6 +174,8 @@ const Index = () => {
   const [currentSection, setCurrentSection] = useState<string | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const audioContextRef = useRef<AudioContext | null>(null);
   const t = translations[lang];
 
@@ -331,7 +347,7 @@ const Index = () => {
       
       case 'contacts':
         return (
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="text-dos-green text-sm md:text-base">
               {showContent && <TypingText text={t.contactsSection.title} speed={20} />}
             </div>
@@ -353,6 +369,94 @@ const Index = () => {
                 <span className="text-dos-green-dark text-sm md:text-base break-all">{t.contactsSection.github}</span>
               </div>
             </div>
+
+            <div className="border-2 border-dos-green-dark p-4 md:p-6 space-y-4">
+              <div className="text-dos-green text-sm md:text-base mb-4">
+                {t.contactsSection.formTitle}
+              </div>
+              
+              {formStatus === 'success' ? (
+                <div className="text-dos-green text-center py-8">
+                  <div className="text-2xl mb-2">✓</div>
+                  <div>{t.contactsSection.successMessage}</div>
+                </div>
+              ) : (
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  setFormStatus('sending');
+                  playBeep(1000, 50);
+                  
+                  try {
+                    const response = await fetch('https://functions.poehali.dev/c271d9bd-76fc-40cb-bae2-fb6196717fcb', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(formData)
+                    });
+                    
+                    if (response.ok) {
+                      setFormStatus('success');
+                      playBeep(1200, 100);
+                      setFormData({ name: '', email: '', message: '' });
+                      setTimeout(() => setFormStatus('idle'), 3000);
+                    } else {
+                      setFormStatus('error');
+                      playBeep(400, 200);
+                      setTimeout(() => setFormStatus('idle'), 3000);
+                    }
+                  } catch (error) {
+                    setFormStatus('error');
+                    playBeep(400, 200);
+                    setTimeout(() => setFormStatus('idle'), 3000);
+                  }
+                }} className="space-y-4">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder={t.contactsSection.namePlaceholder}
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                      minLength={2}
+                      className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      placeholder={t.contactsSection.emailPlaceholder}
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      required
+                      className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      placeholder={t.contactsSection.messagePlaceholder}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      required
+                      minLength={10}
+                      rows={4}
+                      className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark resize-none"
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    disabled={formStatus === 'sending'}
+                    className="w-full bg-dos-green text-dos-black hover:bg-dos-green-dark border-2 border-dos-green"
+                  >
+                    {formStatus === 'sending' ? '...' : t.contactsSection.sendButton}
+                  </Button>
+                  {formStatus === 'error' && (
+                    <div className="text-destructive text-sm text-center">
+                      {t.contactsSection.errorMessage}
+                    </div>
+                  )}
+                </form>
+              )}
+            </div>
+
             <Button 
               variant="outline" 
               onClick={handleBackClick}
