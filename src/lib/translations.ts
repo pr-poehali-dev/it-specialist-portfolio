@@ -4,7 +4,7 @@ export const translations = {
   ru: {
     boot: 'ЗАГРУЗКА СИСТЕМЫ...',
     welcome: 'Добро пожаловать в систему',
-    name: 'Старший ИТ-специалист',
+    name: 'Иван Елькин',
     experience: '25+ лет опыта',
     menu: {
       about: '1. О специалисте',
@@ -15,7 +15,7 @@ export const translations = {
     },
     prompt: 'C:\\> Выберите раздел_',
     about: {
-      title: '>>> О СПЕЦИАЛИСТЕ',
+      title: '>>> ОБ ИВАНЕ ЕЛЬКИНЕ',
       content: 'Высококвалифицированный ИТ-специалист с более чем 25-летним опытом работы. Глубокие знания как в разработке программного обеспечения, так и в аппаратном обеспечении. Успешный опыт реализации комплексных технических проектов от концепции до внедрения.'
     },
     experienceSection: {
@@ -47,10 +47,10 @@ export const translations = {
     },
     contactsSection: {
       title: '>>> КОНТАКТНАЯ ИНФОРМАЦИЯ',
-      email: 'Email: senior.it@example.com',
+      email: 'Email: ivan.elkin@example.com',
       phone: 'Телефон: +7 (XXX) XXX-XX-XX',
-      linkedin: 'LinkedIn: /in/senior-it-specialist',
-      github: 'GitHub: github.com/senior-it-pro',
+      linkedin: 'LinkedIn: /in/ivan-elkin',
+      github: 'GitHub: github.com/ivan-elkin',
       formTitle: '>>> ФОРМА ОБРАТНОЙ СВЯЗИ',
       namePlaceholder: 'Ваше имя',
       emailPlaceholder: 'Ваш email',
@@ -66,7 +66,7 @@ export const translations = {
   en: {
     boot: 'SYSTEM LOADING...',
     welcome: 'Welcome to the system',
-    name: 'Senior IT Specialist',
+    name: 'Ivan Elkin',
     experience: '25+ years of experience',
     menu: {
       about: '1. About',
@@ -77,7 +77,7 @@ export const translations = {
     },
     prompt: 'C:\\> Select section_',
     about: {
-      title: '>>> ABOUT SPECIALIST',
+      title: '>>> ABOUT IVAN ELKIN',
       content: 'Highly qualified IT specialist with over 25 years of experience. Deep knowledge in both software development and hardware. Successful experience implementing complex technical projects from concept to deployment.'
     },
     experienceSection: {
@@ -109,10 +109,10 @@ export const translations = {
     },
     contactsSection: {
       title: '>>> CONTACT INFORMATION',
-      email: 'Email: senior.it@example.com',
+      email: 'Email: ivan.elkin@example.com',
       phone: 'Phone: +7 (XXX) XXX-XX-XX',
-      linkedin: 'LinkedIn: /in/senior-it-specialist',
-      github: 'GitHub: github.com/senior-it-pro',
+      linkedin: 'LinkedIn: /in/ivan-elkin',
+      github: 'GitHub: github.com/ivan-elkin',
       formTitle: '>>> CONTACT FORM',
       namePlaceholder: 'Your name',
       emailPlaceholder: 'Your email',
