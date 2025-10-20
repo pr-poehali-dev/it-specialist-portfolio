@@ -30,21 +30,27 @@ export const translations = {
       ]
     },
     skillsSection: {
-      title: '>>> ТЕХНИЧЕСКИЕ НАВЫКИ И КОМПЕТЕНЦИИ',
+      title: '>>> ТЕХНИЧЕСКИЕ НАВЫКИ И ЭКСПЕРТИЗА',
       categories: [
-        { name: 'Программирование', items: ['C/C++', 'Python', 'Java', 'JavaScript', 'Assembly', 'SQL'] },
-        { name: 'Системы', items: ['Linux/Unix', 'Windows Server', 'Сетевые протоколы', 'Виртуализация'] },
-        { name: 'Железо', items: ['Архитектура ПК', 'Серверное оборудование', 'Встраиваемые системы'] },
-        { name: 'Инструменты', items: ['Git', 'Docker', 'Kubernetes', 'CI/CD', 'Cloud (AWS/Azure)'] }
+        { name: 'Управление IT и методологии', items: ['Управление IT-отделами', 'ITSM / ITIL', 'Agile', 'Бюджетирование', 'Планирование ресурсов', 'Оптимизация процессов'] },
+        { name: 'Внедрение и разработка систем', items: ['1C (КОРП, ЗУП, УТ, ЭДО)', 'CRM', 'ECM-системы', 'ЭДО, ЭЦП', 'Мобильные приложения'] },
+        { name: 'Инфраструктура и облака', items: ['Проектирование ЛВС', 'VMWare', 'Облачный хостинг', 'Миграция в ЦОД', 'Серверы, СХД', 'Мониторинг'] },
+        { name: 'Кибербезопасность и СКУД', items: ['Аудит ФЗ-152', 'SIEM (FireEye Helix)', 'EDR (Kaspersky, Trend Micro, Sophos)', 'Биометрические СКУД', 'Видеонаблюдение'] },
+        { name: 'Промышленные системы', items: ['SCADA', 'BMS', 'IIoT', 'O&M', 'BAS', 'DESC', 'eSight'] },
+        { name: 'Оптимизация затрат', items: ['IT-бюджет', 'Аппаратное и ПО', 'Облачные сервисы', 'Телеком'] }
       ]
     },
     portfolioSection: {
-      title: '>>> ПОРТФОЛИО ПРОЕКТОВ',
+      title: '>>> ОПЫТ И КЛЮЧЕВЫЕ ПРОЕКТЫ',
       projects: [
-        { name: 'Распределённая система хранения данных', tech: 'C++, Linux, Docker' },
-        { name: 'Платформа мониторинга серверов', tech: 'Python, PostgreSQL, React' },
-        { name: 'Система управления встраиваемыми устройствами', tech: 'C, ARM, RTOS' },
-        { name: 'Корпоративная облачная инфраструктура', tech: 'Kubernetes, Terraform, AWS' }
+        { name: 'Система «Умное предприятие»', tech: 'Управление инфраструктурой: Scada, BMS, IIoT, ИИ-аналитика' },
+        { name: 'Комплекс «Virtual Visit Kit»', tech: 'Удаленный аудит инфраструктуры (награждён)' },
+        { name: 'Миграция в облако и ЦОД', tech: '8 серверов, 200+ сайтов, 500к+ посещений/мес' },
+        { name: 'Оптимизация IT-бюджета', tech: 'Сокращение расходов на 40% (облака + телеком)' },
+        { name: 'Отказоустойчивая сеть', tech: 'ЛВС для 150-200 пользователей, автопереключение' },
+        { name: 'Модернизация Wi-Fi и видеонаблюдения', tech: '3 этажа, 15 точек Ubiquiti' },
+        { name: 'Внедрение систем безопасности', tech: 'FireEye Helix, Kaspersky, Trend Micro, Sophos, ФЗ-152' },
+        { name: 'Управление 1С и ЭДО', tech: 'Внедрение КОРП, ЗУП, УТ, ЭДО, ЭЦП' }
       ]
     },
     contactsSection: {
@@ -94,21 +100,27 @@ export const translations = {
       ]
     },
     skillsSection: {
-      title: '>>> TECHNICAL SKILLS AND COMPETENCIES',
+      title: '>>> TECHNICAL SKILLS AND EXPERTISE',
       categories: [
-        { name: 'Programming', items: ['C/C++', 'Python', 'Java', 'JavaScript', 'Assembly', 'SQL'] },
-        { name: 'Systems', items: ['Linux/Unix', 'Windows Server', 'Network Protocols', 'Virtualization'] },
-        { name: 'Hardware', items: ['PC Architecture', 'Server Hardware', 'Embedded Systems'] },
-        { name: 'Tools', items: ['Git', 'Docker', 'Kubernetes', 'CI/CD', 'Cloud (AWS/Azure)'] }
+        { name: 'IT Management & Methodologies', items: ['IT Department Management', 'ITSM / ITIL', 'Agile', 'Budgeting', 'Resource Planning', 'Process Optimization'] },
+        { name: 'System Implementation & Development', items: ['1C (KORP, ZUP, UT, EDO)', 'CRM', 'ECM Systems', 'Electronic Document Management', 'Mobile Apps'] },
+        { name: 'Infrastructure & Cloud', items: ['LAN Design', 'VMWare', 'Cloud Hosting', 'Data Center Migration', 'Servers, Storage', 'Monitoring'] },
+        { name: 'Cybersecurity & Access Control', items: ['Security Audits (152-FZ)', 'SIEM (FireEye Helix)', 'EDR (Kaspersky, Trend Micro, Sophos)', 'Biometric Access Control', 'Video Surveillance'] },
+        { name: 'Industrial Systems', items: ['SCADA', 'BMS', 'IIoT', 'O&M', 'BAS', 'DESC', 'eSight'] },
+        { name: 'Cost Optimization', items: ['IT Budget', 'Hardware & Software', 'Cloud Services', 'Telecom'] }
       ]
     },
     portfolioSection: {
-      title: '>>> PROJECT PORTFOLIO',
+      title: '>>> EXPERIENCE AND KEY PROJECTS',
       projects: [
-        { name: 'Distributed Data Storage System', tech: 'C++, Linux, Docker' },
-        { name: 'Server Monitoring Platform', tech: 'Python, PostgreSQL, React' },
-        { name: 'Embedded Device Management System', tech: 'C, ARM, RTOS' },
-        { name: 'Corporate Cloud Infrastructure', tech: 'Kubernetes, Terraform, AWS' }
+        { name: 'Smart Enterprise System', tech: 'Infrastructure management: Scada, BMS, IIoT, AI analytics' },
+        { name: 'Virtual Visit Kit', tech: 'Remote infrastructure audit (awarded)' },
+        { name: 'Cloud & Data Center Migration', tech: '8 servers, 200+ sites, 500k+ visits/month' },
+        { name: 'IT Budget Optimization', tech: '40% cost reduction (cloud + telecom)' },
+        { name: 'Fault-Tolerant Network', tech: 'LAN for 150-200 users, auto-failover' },
+        { name: 'Wi-Fi & Surveillance Modernization', tech: '3 floors, 15 Ubiquiti access points' },
+        { name: 'Security Systems Implementation', tech: 'FireEye Helix, Kaspersky, Trend Micro, Sophos, 152-FZ' },
+        { name: '1C & Electronic Document Management', tech: 'Implementation: KORP, ZUP, UT, EDO, Digital Signature' }
       ]
     },
     contactsSection: {
