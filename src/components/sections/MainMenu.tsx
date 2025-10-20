@@ -6,6 +6,7 @@ interface MenuItems {
   experience: string;
   skills: string;
   portfolio: string;
+  game: string;
   contacts: string;
 }
 
@@ -52,6 +53,12 @@ const MainMenu = ({ welcome, name, experience, menu, prompt, onSectionClick }: M
             onClick={() => onSectionClick('portfolio')}
           >
             <div className="text-dos-green">{menu.portfolio}</div>
+          </Card>
+          <Card 
+            className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+            onClick={() => onSectionClick('game')}
+          >
+            <div className="text-dos-green">{menu.game}</div>
           </Card>
           <Card 
             className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"

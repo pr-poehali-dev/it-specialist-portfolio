@@ -11,6 +11,8 @@ import SkillsSection from '@/components/sections/SkillsSection';
 import PortfolioSection from '@/components/sections/PortfolioSection';
 import ContactsSection from '@/components/sections/ContactsSection';
 import SnakeGame from '@/components/games/SnakeGame';
+import TetrisGame from '@/components/games/TetrisGame';
+import GameLeaderboard from '@/components/games/GameLeaderboard';
 
 const Index = () => {
   const [lang, setLang] = useState<Language>('ru');
@@ -101,11 +103,25 @@ const Index = () => {
       
       case 'game':
         return (
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div className="text-dos-green text-xl font-mono crt-effect mb-4">
-              {showContent && '>>> RETRO SNAKE GAME'}
+              {showContent && '>>> RETRO ARCADE'}
             </div>
-            {showContent && <SnakeGame />}
+            {showContent && (
+              <>
+                <GameLeaderboard />
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <div className="text-dos-green font-mono text-lg mb-3">SNAKE</div>
+                    <SnakeGame />
+                  </div>
+                  <div>
+                    <div className="text-dos-green font-mono text-lg mb-3">TETRIS</div>
+                    <TetrisGame />
+                  </div>
+                </div>
+              </>
+            )}
             <button
               onClick={handleBackClick}
               className="text-dos-green hover:text-dos-green/80 font-mono text-sm transition-colors flex items-center gap-2"
