@@ -90,22 +90,38 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
         {showContent && <TypingText text={contactInfo.title} speed={20} />}
       </div>
       <div className="space-y-3 md:pl-4">
-        <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
+        <a 
+          href="mailto:info@elkin.pro" 
+          className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer"
+        >
           <Icon name="Mail" size={16} className="text-dos-green flex-shrink-0" />
           <span className="text-dos-green-dark text-sm md:text-base break-all">{contactInfo.email}</span>
-        </div>
-        <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
+        </a>
+        <a 
+          href="tel:+79637178053" 
+          className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer"
+        >
           <Icon name="Phone" size={16} className="text-dos-green flex-shrink-0" />
           <span className="text-dos-green-dark text-sm md:text-base">{contactInfo.phone}</span>
-        </div>
-        <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
+        </a>
+        <a 
+          href="https://linkedin.com/in/ivanelkin" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer"
+        >
           <Icon name="Linkedin" size={16} className="text-dos-green flex-shrink-0" />
           <span className="text-dos-green-dark text-sm md:text-base break-all">{contactInfo.linkedin}</span>
-        </div>
-        <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
+        </a>
+        <a 
+          href="https://github.com/ivan-elkin" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer"
+        >
           <Icon name="Github" size={16} className="text-dos-green flex-shrink-0" />
           <span className="text-dos-green-dark text-sm md:text-base break-all">{contactInfo.github}</span>
-        </div>
+        </a>
       </div>
 
       <div className="border-2 border-dos-green-dark p-4 md:p-6 space-y-4">

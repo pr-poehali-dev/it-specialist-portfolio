@@ -21,10 +21,12 @@ export const translations = {
     experienceSection: {
       title: '>>> ОПЫТ РАБОТЫ И КАРЬЕРНЫЙ ПУТЬ',
       jobs: [
-        { period: '2015 - н.в.', role: 'Ведущий архитектор ИТ-систем', company: 'Tech Solutions Inc.' },
-        { period: '2010 - 2015', role: 'Старший системный инженер', company: 'Enterprise Systems' },
-        { period: '2005 - 2010', role: 'Инженер-разработчик', company: 'Software Dynamics' },
-        { period: '2000 - 2005', role: 'Младший программист', company: 'Digital Innovations' }
+        { period: '2020 - н.в.', role: 'Директор по ИТ', company: '' },
+        { period: '2011 - 2020', role: 'IT менеджер', company: '' },
+        { period: '2009 - 2011', role: 'Ведущий системный администратор', company: '' },
+        { period: '2008 - 2009', role: 'От зам. руководителя отдела ИТ до руководителя', company: '' },
+        { period: '2007 - 2008', role: 'Программист 1С', company: '' },
+        { period: '2006 - 2007', role: 'Системный администратор, технический дизайнер', company: '' }
       ]
     },
     skillsSection: {
@@ -83,10 +85,12 @@ export const translations = {
     experienceSection: {
       title: '>>> WORK EXPERIENCE AND CAREER PATH',
       jobs: [
-        { period: '2015 - present', role: 'Lead IT Systems Architect', company: 'Tech Solutions Inc.' },
-        { period: '2010 - 2015', role: 'Senior Systems Engineer', company: 'Enterprise Systems' },
-        { period: '2005 - 2010', role: 'Software Engineer', company: 'Software Dynamics' },
-        { period: '2000 - 2005', role: 'Junior Programmer', company: 'Digital Innovations' }
+        { period: '2020 - present', role: 'IT Director', company: '' },
+        { period: '2011 - 2020', role: 'IT Manager', company: '' },
+        { period: '2009 - 2011', role: 'Lead System Administrator', company: '' },
+        { period: '2008 - 2009', role: 'From Deputy IT Head to IT Head', company: '' },
+        { period: '2007 - 2008', role: '1C Programmer', company: '' },
+        { period: '2006 - 2007', role: 'System Administrator, Technical Designer', company: '' }
       ]
     },
     skillsSection: {
