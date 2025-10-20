@@ -1,172 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
-import TypingText from '@/components/TypingText';
-
-type Language = 'ru' | 'en';
-
-const translations = {
-  ru: {
-    boot: 'ЗАГРУЗКА СИСТЕМЫ...',
-    welcome: 'Добро пожаловать в систему',
-    name: 'Старший ИТ-специалист',
-    experience: '25+ лет опыта',
-    menu: {
-      about: '1. О специалисте',
-      experience: '2. Опыт работы',
-      skills: '3. Технические навыки',
-      portfolio: '4. Портфолио',
-      contacts: '5. Контакты'
-    },
-    prompt: 'C:\\> Выберите раздел_',
-    about: {
-      title: '>>> О СПЕЦИАЛИСТЕ',
-      content: 'Высококвалифицированный ИТ-специалист с более чем 25-летним опытом работы. Глубокие знания как в разработке программного обеспечения, так и в аппаратном обеспечении. Успешный опыт реализации комплексных технических проектов от концепции до внедрения.'
-    },
-    experienceSection: {
-      title: '>>> ОПЫТ РАБОТЫ И КАРЬЕРНЫЙ ПУТЬ',
-      jobs: [
-        { period: '2015 - н.в.', role: 'Ведущий архитектор ИТ-систем', company: 'Tech Solutions Inc.' },
-        { period: '2010 - 2015', role: 'Старший системный инженер', company: 'Enterprise Systems' },
-        { period: '2005 - 2010', role: 'Инженер-разработчик', company: 'Software Dynamics' },
-        { period: '2000 - 2005', role: 'Младший программист', company: 'Digital Innovations' }
-      ]
-    },
-    skillsSection: {
-      title: '>>> ТЕХНИЧЕСКИЕ НАВЫКИ И КОМПЕТЕНЦИИ',
-      categories: [
-        { name: 'Программирование', items: ['C/C++', 'Python', 'Java', 'JavaScript', 'Assembly', 'SQL'] },
-        { name: 'Системы', items: ['Linux/Unix', 'Windows Server', 'Сетевые протоколы', 'Виртуализация'] },
-        { name: 'Железо', items: ['Архитектура ПК', 'Серверное оборудование', 'Встраиваемые системы'] },
-        { name: 'Инструменты', items: ['Git', 'Docker', 'Kubernetes', 'CI/CD', 'Cloud (AWS/Azure)'] }
-      ]
-    },
-    portfolioSection: {
-      title: '>>> ПОРТФОЛИО ПРОЕКТОВ',
-      projects: [
-        { name: 'Распределённая система хранения данных', tech: 'C++, Linux, Docker' },
-        { name: 'Платформа мониторинга серверов', tech: 'Python, PostgreSQL, React' },
-        { name: 'Система управления встраиваемыми устройствами', tech: 'C, ARM, RTOS' },
-        { name: 'Корпоративная облачная инфраструктура', tech: 'Kubernetes, Terraform, AWS' }
-      ]
-    },
-    contactsSection: {
-      title: '>>> КОНТАКТНАЯ ИНФОРМАЦИЯ',
-      email: 'Email: senior.it@example.com',
-      phone: 'Телефон: +7 (XXX) XXX-XX-XX',
-      linkedin: 'LinkedIn: /in/senior-it-specialist',
-      github: 'GitHub: github.com/senior-it-pro',
-      formTitle: '>>> ФОРМА ОБРАТНОЙ СВЯЗИ',
-      namePlaceholder: 'Ваше имя',
-      emailPlaceholder: 'Ваш email',
-      messagePlaceholder: 'Ваше сообщение',
-      sendButton: 'Отправить',
-      successMessage: 'Сообщение отправлено!',
-      errorMessage: 'Ошибка отправки'
-    },
-    back: '[ ESC ] Назад в меню'
-  },
-  en: {
-    boot: 'SYSTEM LOADING...',
-    welcome: 'Welcome to the system',
-    name: 'Senior IT Specialist',
-    experience: '25+ years of experience',
-    menu: {
-      about: '1. About',
-      experience: '2. Work Experience',
-      skills: '3. Technical Skills',
-      portfolio: '4. Portfolio',
-      contacts: '5. Contacts'
-    },
-    prompt: 'C:\\> Select section_',
-    about: {
-      title: '>>> ABOUT SPECIALIST',
-      content: 'Highly qualified IT specialist with over 25 years of experience. Deep knowledge in both software development and hardware. Successful experience implementing complex technical projects from concept to deployment.'
-    },
-    experienceSection: {
-      title: '>>> WORK EXPERIENCE AND CAREER PATH',
-      jobs: [
-        { period: '2015 - present', role: 'Lead IT Systems Architect', company: 'Tech Solutions Inc.' },
-        { period: '2010 - 2015', role: 'Senior Systems Engineer', company: 'Enterprise Systems' },
-        { period: '2005 - 2010', role: 'Software Engineer', company: 'Software Dynamics' },
-        { period: '2000 - 2005', role: 'Junior Programmer', company: 'Digital Innovations' }
-      ]
-    },
-    skillsSection: {
-      title: '>>> TECHNICAL SKILLS AND COMPETENCIES',
-      categories: [
-        { name: 'Programming', items: ['C/C++', 'Python', 'Java', 'JavaScript', 'Assembly', 'SQL'] },
-        { name: 'Systems', items: ['Linux/Unix', 'Windows Server', 'Network Protocols', 'Virtualization'] },
-        { name: 'Hardware', items: ['PC Architecture', 'Server Hardware', 'Embedded Systems'] },
-        { name: 'Tools', items: ['Git', 'Docker', 'Kubernetes', 'CI/CD', 'Cloud (AWS/Azure)'] }
-      ]
-    },
-    portfolioSection: {
-      title: '>>> PROJECT PORTFOLIO',
-      projects: [
-        { name: 'Distributed Data Storage System', tech: 'C++, Linux, Docker' },
-        { name: 'Server Monitoring Platform', tech: 'Python, PostgreSQL, React' },
-        { name: 'Embedded Device Management System', tech: 'C, ARM, RTOS' },
-        { name: 'Corporate Cloud Infrastructure', tech: 'Kubernetes, Terraform, AWS' }
-      ]
-    },
-    contactsSection: {
-      title: '>>> CONTACT INFORMATION',
-      email: 'Email: senior.it@example.com',
-      phone: 'Phone: +7 (XXX) XXX-XX-XX',
-      linkedin: 'LinkedIn: /in/senior-it-specialist',
-      github: 'GitHub: github.com/senior-it-pro',
-      formTitle: '>>> CONTACT FORM',
-      namePlaceholder: 'Your name',
-      emailPlaceholder: 'Your email',
-      messagePlaceholder: 'Your message',
-      sendButton: 'Send',
-      successMessage: 'Message sent!',
-      errorMessage: 'Send error'
-    },
-    back: '[ ESC ] Back to menu'
-  }
-};
-
-const asciiArt = {
-  computer: `
-    ┌─────────────────┐
-    │ ████████████████│
-    │ ██          ████│
-    │ ██  SYSTEM  ████│
-    │ ████████████████│
-    └─────────────────┘
-        │      │
-    ════╧══════╧════
-  `,
-  server: `
-    ╔═══════════════╗
-    ║ ●●● [SERVER] ║
-    ║ ─────────────║
-    ║ ●●● [SYSTEM] ║
-    ║ ─────────────║
-    ║ ●●● [BACKUP] ║
-    ╚═══════════════╝
-  `,
-  code: `
-    { CODE }
-    ┌─────────┐
-    │ if(1) { │
-    │   run() │
-    │ }       │
-    └─────────┘
-  `,
-  network: `
-    ╭───╮   ╭───╮
-    │ ◯ │═══│ ◯ │
-    ╰───╯   ╰───╯
-       ║       ║
-    ╭──╨───────╨──╮
-    │   NETWORK   │
-    ╰─────────────╯
-  `
-};
+import { translations, Language } from '@/lib/translations';
+import { useAudio } from '@/hooks/useAudio';
+import BootScreen from '@/components/BootScreen';
+import MainMenu from '@/components/sections/MainMenu';
+import AboutSection from '@/components/sections/AboutSection';
+import ExperienceSection from '@/components/sections/ExperienceSection';
+import SkillsSection from '@/components/sections/SkillsSection';
+import PortfolioSection from '@/components/sections/PortfolioSection';
+import ContactsSection from '@/components/sections/ContactsSection';
 
 const Index = () => {
   const [lang, setLang] = useState<Language>('ru');
@@ -174,9 +17,7 @@ const Index = () => {
   const [currentSection, setCurrentSection] = useState<string | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [showContent, setShowContent] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const audioContextRef = useRef<AudioContext | null>(null);
+  const { playBeep } = useAudio(soundEnabled);
   const t = translations[lang];
 
   useEffect(() => {
@@ -191,34 +32,6 @@ const Index = () => {
       return () => clearTimeout(timer);
     }
   }, [currentSection]);
-
-  const playBeep = (frequency: number = 800, duration: number = 100) => {
-    if (!soundEnabled) return;
-    
-    try {
-      if (!audioContextRef.current) {
-        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-      }
-      
-      const ctx = audioContextRef.current;
-      const oscillator = ctx.createOscillator();
-      const gainNode = ctx.createGain();
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(ctx.destination);
-      
-      oscillator.frequency.value = frequency;
-      oscillator.type = 'square';
-      
-      gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration / 1000);
-      
-      oscillator.start(ctx.currentTime);
-      oscillator.stop(ctx.currentTime + duration / 1000);
-    } catch (e) {
-      console.log('Audio not supported');
-    }
-  };
 
   const handleSectionClick = (section: string) => {
     playBeep(1000, 80);
@@ -243,294 +56,75 @@ const Index = () => {
     switch (currentSection) {
       case 'about':
         return (
-          <div className="space-y-4">
-            <div className="text-dos-green text-sm md:text-base">
-              {showContent && <TypingText text={t.about.title} speed={20} />}
-            </div>
-            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
-              <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.computer}</pre>
-              <div className="text-dos-green-dark text-sm md:text-base md:pl-4 flex-1">
-                {showContent && <TypingText text={t.about.content} speed={15} />}
-              </div>
-            </div>
-            <Button 
-              variant="outline" 
-              onClick={handleBackClick}
-              className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
-            >
-              {t.back}
-            </Button>
-          </div>
+          <AboutSection
+            title={t.about.title}
+            content={t.about.content}
+            showContent={showContent}
+            backText={t.back}
+            onBack={handleBackClick}
+          />
         );
       
       case 'experience':
         return (
-          <div className="space-y-4">
-            <div className="text-dos-green text-sm md:text-base">
-              {showContent && <TypingText text={t.experienceSection.title} speed={20} />}
-            </div>
-            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-              <div className="space-y-6 md:pl-4 flex-1">
-                {t.experienceSection.jobs.map((job, idx) => (
-                  <div key={idx} className="space-y-1">
-                    <div className="text-dos-green text-sm md:text-base">[{job.period}]</div>
-                    <div className="text-dos-green-dark text-sm md:text-base pl-2">&gt; {job.role}</div>
-                    <div className="text-dos-green-dark text-sm md:text-base pl-2 opacity-80">{job.company}</div>
-                  </div>
-                ))}
-              </div>
-              <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden lg:block">{asciiArt.server}</pre>
-            </div>
-            <Button 
-              variant="outline" 
-              onClick={handleBackClick}
-              className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
-            >
-              {t.back}
-            </Button>
-          </div>
+          <ExperienceSection
+            title={t.experienceSection.title}
+            jobs={t.experienceSection.jobs}
+            showContent={showContent}
+            backText={t.back}
+            onBack={handleBackClick}
+          />
         );
       
       case 'skills':
         return (
-          <div className="space-y-4">
-            <div className="text-dos-green flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-              <span className="text-sm md:text-base">{showContent && <TypingText text={t.skillsSection.title} speed={20} />}</span>
-              <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden md:block">{asciiArt.code}</pre>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 md:pl-4">
-              {t.skillsSection.categories.map((category, idx) => (
-                <div key={idx} className="space-y-2">
-                  <div className="text-dos-green text-sm md:text-base">[{category.name}]</div>
-                  <div className="space-y-1 pl-2">
-                    {category.items.map((item, i) => (
-                      <div key={i} className="text-dos-green-dark text-sm md:text-base">&gt; {item}</div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <Button 
-              variant="outline" 
-              onClick={handleBackClick}
-              className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
-            >
-              {t.back}
-            </Button>
-          </div>
+          <SkillsSection
+            title={t.skillsSection.title}
+            categories={t.skillsSection.categories}
+            showContent={showContent}
+            backText={t.back}
+            onBack={handleBackClick}
+          />
         );
       
       case 'portfolio':
         return (
-          <div className="space-y-4">
-            <div className="text-dos-green flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-              <span className="text-sm md:text-base">{showContent && <TypingText text={t.portfolioSection.title} speed={20} />}</span>
-              <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden md:block">{asciiArt.network}</pre>
-            </div>
-            <div className="space-y-6 md:pl-4">
-              {t.portfolioSection.projects.map((project, idx) => (
-                <div key={idx} className="space-y-1 border-l-2 border-dos-green-dark pl-3 md:pl-4 py-2">
-                  <div className="text-dos-green text-sm md:text-base">&gt; {project.name}</div>
-                  <div className="text-dos-green-dark text-xs md:text-sm pl-2 opacity-80">Tech: {project.tech}</div>
-                </div>
-              ))}
-            </div>
-            <Button 
-              variant="outline" 
-              onClick={handleBackClick}
-              className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
-            >
-              {t.back}
-            </Button>
-          </div>
+          <PortfolioSection
+            title={t.portfolioSection.title}
+            projects={t.portfolioSection.projects}
+            showContent={showContent}
+            backText={t.back}
+            onBack={handleBackClick}
+          />
         );
       
       case 'contacts':
         return (
-          <div className="space-y-6">
-            <div className="text-dos-green text-sm md:text-base">
-              {showContent && <TypingText text={t.contactsSection.title} speed={20} />}
-            </div>
-            <div className="space-y-3 md:pl-4">
-              <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
-                <Icon name="Mail" size={16} className="text-dos-green flex-shrink-0" />
-                <span className="text-dos-green-dark text-sm md:text-base break-all">{t.contactsSection.email}</span>
-              </div>
-              <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
-                <Icon name="Phone" size={16} className="text-dos-green flex-shrink-0" />
-                <span className="text-dos-green-dark text-sm md:text-base">{t.contactsSection.phone}</span>
-              </div>
-              <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
-                <Icon name="Linkedin" size={16} className="text-dos-green flex-shrink-0" />
-                <span className="text-dos-green-dark text-sm md:text-base break-all">{t.contactsSection.linkedin}</span>
-              </div>
-              <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
-                <Icon name="Github" size={16} className="text-dos-green flex-shrink-0" />
-                <span className="text-dos-green-dark text-sm md:text-base break-all">{t.contactsSection.github}</span>
-              </div>
-            </div>
-
-            <div className="border-2 border-dos-green-dark p-4 md:p-6 space-y-4">
-              <div className="text-dos-green text-sm md:text-base mb-4">
-                {t.contactsSection.formTitle}
-              </div>
-              
-              {formStatus === 'success' ? (
-                <div className="text-dos-green text-center py-8">
-                  <div className="text-2xl mb-2">✓</div>
-                  <div>{t.contactsSection.successMessage}</div>
-                </div>
-              ) : (
-                <form onSubmit={async (e) => {
-                  e.preventDefault();
-                  setFormStatus('sending');
-                  playBeep(1000, 50);
-                  
-                  try {
-                    const response = await fetch('https://functions.poehali.dev/c271d9bd-76fc-40cb-bae2-fb6196717fcb', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(formData)
-                    });
-                    
-                    if (response.ok) {
-                      setFormStatus('success');
-                      playBeep(1200, 100);
-                      setFormData({ name: '', email: '', message: '' });
-                      setTimeout(() => setFormStatus('idle'), 3000);
-                    } else {
-                      setFormStatus('error');
-                      playBeep(400, 200);
-                      setTimeout(() => setFormStatus('idle'), 3000);
-                    }
-                  } catch (error) {
-                    setFormStatus('error');
-                    playBeep(400, 200);
-                    setTimeout(() => setFormStatus('idle'), 3000);
-                  }
-                }} className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder={t.contactsSection.namePlaceholder}
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                      minLength={2}
-                      className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder={t.contactsSection.emailPlaceholder}
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark"
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      placeholder={t.contactsSection.messagePlaceholder}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      required
-                      minLength={10}
-                      rows={4}
-                      className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark resize-none"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    disabled={formStatus === 'sending'}
-                    className="w-full bg-dos-green text-dos-black hover:bg-dos-green-dark border-2 border-dos-green"
-                  >
-                    {formStatus === 'sending' ? '...' : t.contactsSection.sendButton}
-                  </Button>
-                  {formStatus === 'error' && (
-                    <div className="text-destructive text-sm text-center">
-                      {t.contactsSection.errorMessage}
-                    </div>
-                  )}
-                </form>
-              )}
-            </div>
-
-            <Button 
-              variant="outline" 
-              onClick={handleBackClick}
-              className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
-            >
-              {t.back}
-            </Button>
-          </div>
+          <ContactsSection
+            contactInfo={t.contactsSection}
+            showContent={showContent}
+            backText={t.back}
+            onBack={handleBackClick}
+            playBeep={playBeep}
+          />
         );
       
       default:
         return (
-          <div className="space-y-6 animate-fade-in">
-            <div className="space-y-2">
-              <div className="text-dos-green crt-effect text-2xl">{t.welcome}</div>
-              <div className="text-dos-green-dark text-xl">{t.name}</div>
-              <div className="text-dos-green-dark">{t.experience}</div>
-            </div>
-            
-            <div className="flex gap-8 items-start">
-              <div className="border-2 border-dos-green-dark p-6 space-y-3 flex-1">
-                <Card 
-                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                  onClick={() => handleSectionClick('about')}
-                >
-                  <div className="text-dos-green">{t.menu.about}</div>
-                </Card>
-                <Card 
-                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                  onClick={() => handleSectionClick('experience')}
-                >
-                  <div className="text-dos-green">{t.menu.experience}</div>
-                </Card>
-                <Card 
-                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                  onClick={() => handleSectionClick('skills')}
-                >
-                  <div className="text-dos-green">{t.menu.skills}</div>
-                </Card>
-                <Card 
-                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                  onClick={() => handleSectionClick('portfolio')}
-                >
-                  <div className="text-dos-green">{t.menu.portfolio}</div>
-                </Card>
-                <Card 
-                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                  onClick={() => handleSectionClick('contacts')}
-                >
-                  <div className="text-dos-green">{t.menu.contacts}</div>
-                </Card>
-              </div>
-              <pre className="text-dos-green text-xs leading-tight whitespace-pre hidden lg:block">{asciiArt.computer}</pre>
-            </div>
-            
-            <div className="text-dos-green-dark">
-              {t.prompt}
-            </div>
-          </div>
+          <MainMenu
+            welcome={t.welcome}
+            name={t.name}
+            experience={t.experience}
+            menu={t.menu}
+            prompt={t.prompt}
+            onSectionClick={handleSectionClick}
+          />
         );
     }
   };
 
   if (!booted) {
-    return (
-      <div className="min-h-screen bg-dos-black flex items-center justify-center scanline">
-        <div className="space-y-6 text-center">
-          <pre className="text-dos-green text-sm leading-tight whitespace-pre">{asciiArt.computer}</pre>
-          <div className="text-dos-green crt-effect text-2xl animate-pulse">
-            {t.boot}
-          </div>
-        </div>
-      </div>
-    );
+    return <BootScreen bootText={t.boot} />;
   }
 
   return (
