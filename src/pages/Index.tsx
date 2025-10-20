@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
@@ -114,10 +114,51 @@ const translations = {
   }
 };
 
+const asciiArt = {
+  computer: `
+    ┌─────────────────┐
+    │ ████████████████│
+    │ ██          ████│
+    │ ██  SYSTEM  ████│
+    │ ████████████████│
+    └─────────────────┘
+        │      │
+    ════╧══════╧════
+  `,
+  server: `
+    ╔═══════════════╗
+    ║ ●●● [SERVER] ║
+    ║ ─────────────║
+    ║ ●●● [SYSTEM] ║
+    ║ ─────────────║
+    ║ ●●● [BACKUP] ║
+    ╚═══════════════╝
+  `,
+  code: `
+    { CODE }
+    ┌─────────┐
+    │ if(1) { │
+    │   run() │
+    │ }       │
+    └─────────┘
+  `,
+  network: `
+    ╭───╮   ╭───╮
+    │ ◯ │═══│ ◯ │
+    ╰───╯   ╰───╯
+       ║       ║
+    ╭──╨───────╨──╮
+    │   NETWORK   │
+    ╰─────────────╯
+  `
+};
+
 const Index = () => {
   const [lang, setLang] = useState<Language>('ru');
   const [booted, setBooted] = useState(false);
   const [currentSection, setCurrentSection] = useState<string | null>(null);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const audioContextRef = useRef<AudioContext | null>(null);
   const t = translations[lang];
 
   useEffect(() => {
@@ -125,16 +166,65 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const playBeep = (frequency: number = 800, duration: number = 100) => {
+    if (!soundEnabled) return;
+    
+    try {
+      if (!audioContextRef.current) {
+        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
+      
+      const ctx = audioContextRef.current;
+      const oscillator = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(ctx.destination);
+      
+      oscillator.frequency.value = frequency;
+      oscillator.type = 'square';
+      
+      gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration / 1000);
+      
+      oscillator.start(ctx.currentTime);
+      oscillator.stop(ctx.currentTime + duration / 1000);
+    } catch (e) {
+      console.log('Audio not supported');
+    }
+  };
+
+  const handleSectionClick = (section: string) => {
+    playBeep(1000, 80);
+    setCurrentSection(section);
+  };
+
+  const handleBackClick = () => {
+    playBeep(600, 80);
+    setCurrentSection(null);
+  };
+
+  const toggleSound = () => {
+    const newState = !soundEnabled;
+    setSoundEnabled(newState);
+    if (newState) {
+      playBeep(1200, 50);
+    }
+  };
+
   const renderSection = () => {
     switch (currentSection) {
       case 'about':
         return (
           <div className="space-y-4 animate-fade-in">
             <div className="text-dos-green">{t.about.title}</div>
-            <div className="text-dos-green-dark pl-4">{t.about.content}</div>
+            <div className="flex gap-8 items-start">
+              <pre className="text-dos-green text-xs leading-tight whitespace-pre">{asciiArt.computer}</pre>
+              <div className="text-dos-green-dark pl-4 flex-1">{t.about.content}</div>
+            </div>
             <Button 
               variant="outline" 
-              onClick={() => setCurrentSection(null)}
+              onClick={handleBackClick}
               className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
             >
               {t.back}
@@ -146,18 +236,21 @@ const Index = () => {
         return (
           <div className="space-y-4 animate-fade-in">
             <div className="text-dos-green">{t.experienceSection.title}</div>
-            <div className="space-y-6 pl-4">
-              {t.experienceSection.jobs.map((job, idx) => (
-                <div key={idx} className="space-y-1">
-                  <div className="text-dos-green">[{job.period}]</div>
-                  <div className="text-dos-green-dark pl-2">&gt; {job.role}</div>
-                  <div className="text-dos-green-dark pl-2 opacity-80">{job.company}</div>
-                </div>
-              ))}
+            <div className="flex gap-6">
+              <div className="space-y-6 pl-4 flex-1">
+                {t.experienceSection.jobs.map((job, idx) => (
+                  <div key={idx} className="space-y-1">
+                    <div className="text-dos-green">[{job.period}]</div>
+                    <div className="text-dos-green-dark pl-2">&gt; {job.role}</div>
+                    <div className="text-dos-green-dark pl-2 opacity-80">{job.company}</div>
+                  </div>
+                ))}
+              </div>
+              <pre className="text-dos-green text-xs leading-tight whitespace-pre hidden md:block">{asciiArt.server}</pre>
             </div>
             <Button 
               variant="outline" 
-              onClick={() => setCurrentSection(null)}
+              onClick={handleBackClick}
               className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
             >
               {t.back}
@@ -168,7 +261,10 @@ const Index = () => {
       case 'skills':
         return (
           <div className="space-y-4 animate-fade-in">
-            <div className="text-dos-green">{t.skillsSection.title}</div>
+            <div className="text-dos-green flex items-center gap-4">
+              <span>{t.skillsSection.title}</span>
+              <pre className="text-dos-green text-xs leading-tight whitespace-pre">{asciiArt.code}</pre>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pl-4">
               {t.skillsSection.categories.map((category, idx) => (
                 <div key={idx} className="space-y-2">
@@ -183,7 +279,7 @@ const Index = () => {
             </div>
             <Button 
               variant="outline" 
-              onClick={() => setCurrentSection(null)}
+              onClick={handleBackClick}
               className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
             >
               {t.back}
@@ -194,7 +290,10 @@ const Index = () => {
       case 'portfolio':
         return (
           <div className="space-y-4 animate-fade-in">
-            <div className="text-dos-green">{t.portfolioSection.title}</div>
+            <div className="text-dos-green flex items-center gap-4">
+              <span>{t.portfolioSection.title}</span>
+              <pre className="text-dos-green text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.network}</pre>
+            </div>
             <div className="space-y-6 pl-4">
               {t.portfolioSection.projects.map((project, idx) => (
                 <div key={idx} className="space-y-1 border-l-2 border-dos-green-dark pl-4 py-2">
@@ -205,7 +304,7 @@ const Index = () => {
             </div>
             <Button 
               variant="outline" 
-              onClick={() => setCurrentSection(null)}
+              onClick={handleBackClick}
               className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
             >
               {t.back}
@@ -218,26 +317,26 @@ const Index = () => {
           <div className="space-y-4 animate-fade-in">
             <div className="text-dos-green">{t.contactsSection.title}</div>
             <div className="space-y-3 pl-4">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
                 <Icon name="Mail" size={16} className="text-dos-green" />
                 <span className="text-dos-green-dark">{t.contactsSection.email}</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
                 <Icon name="Phone" size={16} className="text-dos-green" />
                 <span className="text-dos-green-dark">{t.contactsSection.phone}</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
                 <Icon name="Linkedin" size={16} className="text-dos-green" />
                 <span className="text-dos-green-dark">{t.contactsSection.linkedin}</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
                 <Icon name="Github" size={16} className="text-dos-green" />
                 <span className="text-dos-green-dark">{t.contactsSection.github}</span>
               </div>
             </div>
             <Button 
               variant="outline" 
-              onClick={() => setCurrentSection(null)}
+              onClick={handleBackClick}
               className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
             >
               {t.back}
@@ -254,37 +353,40 @@ const Index = () => {
               <div className="text-dos-green-dark">{t.experience}</div>
             </div>
             
-            <div className="border-2 border-dos-green-dark p-6 space-y-3">
-              <Card 
-                className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                onClick={() => setCurrentSection('about')}
-              >
-                <div className="text-dos-green">{t.menu.about}</div>
-              </Card>
-              <Card 
-                className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                onClick={() => setCurrentSection('experience')}
-              >
-                <div className="text-dos-green">{t.menu.experience}</div>
-              </Card>
-              <Card 
-                className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                onClick={() => setCurrentSection('skills')}
-              >
-                <div className="text-dos-green">{t.menu.skills}</div>
-              </Card>
-              <Card 
-                className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                onClick={() => setCurrentSection('portfolio')}
-              >
-                <div className="text-dos-green">{t.menu.portfolio}</div>
-              </Card>
-              <Card 
-                className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
-                onClick={() => setCurrentSection('contacts')}
-              >
-                <div className="text-dos-green">{t.menu.contacts}</div>
-              </Card>
+            <div className="flex gap-8 items-start">
+              <div className="border-2 border-dos-green-dark p-6 space-y-3 flex-1">
+                <Card 
+                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+                  onClick={() => handleSectionClick('about')}
+                >
+                  <div className="text-dos-green">{t.menu.about}</div>
+                </Card>
+                <Card 
+                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+                  onClick={() => handleSectionClick('experience')}
+                >
+                  <div className="text-dos-green">{t.menu.experience}</div>
+                </Card>
+                <Card 
+                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+                  onClick={() => handleSectionClick('skills')}
+                >
+                  <div className="text-dos-green">{t.menu.skills}</div>
+                </Card>
+                <Card 
+                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+                  onClick={() => handleSectionClick('portfolio')}
+                >
+                  <div className="text-dos-green">{t.menu.portfolio}</div>
+                </Card>
+                <Card 
+                  className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+                  onClick={() => handleSectionClick('contacts')}
+                >
+                  <div className="text-dos-green">{t.menu.contacts}</div>
+                </Card>
+              </div>
+              <pre className="text-dos-green text-xs leading-tight whitespace-pre hidden lg:block">{asciiArt.computer}</pre>
             </div>
             
             <div className="text-dos-green-dark">
@@ -298,8 +400,11 @@ const Index = () => {
   if (!booted) {
     return (
       <div className="min-h-screen bg-dos-black flex items-center justify-center scanline">
-        <div className="text-dos-green crt-effect text-2xl animate-pulse">
-          {t.boot}
+        <div className="space-y-6 text-center">
+          <pre className="text-dos-green text-sm leading-tight whitespace-pre">{asciiArt.computer}</pre>
+          <div className="text-dos-green crt-effect text-2xl animate-pulse">
+            {t.boot}
+          </div>
         </div>
       </div>
     );
@@ -309,9 +414,23 @@ const Index = () => {
     <div className="min-h-screen bg-dos-black scanline">
       <div className="absolute top-4 right-4 flex gap-2">
         <Button
+          variant="outline"
+          size="sm"
+          onClick={toggleSound}
+          className={soundEnabled 
+            ? 'border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black' 
+            : 'border-dos-green-dark text-dos-green-dark hover:bg-dos-green-dark hover:text-dos-black opacity-50'
+          }
+        >
+          {soundEnabled ? <Icon name="Volume2" size={16} /> : <Icon name="VolumeX" size={16} />}
+        </Button>
+        <Button
           variant={lang === 'ru' ? 'default' : 'outline'}
           size="sm"
-          onClick={() => setLang('ru')}
+          onClick={() => {
+            playBeep(1000, 50);
+            setLang('ru');
+          }}
           className={lang === 'ru' ? 'bg-dos-green text-dos-black' : 'border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black'}
         >
           RU
@@ -319,7 +438,10 @@ const Index = () => {
         <Button
           variant={lang === 'en' ? 'default' : 'outline'}
           size="sm"
-          onClick={() => setLang('en')}
+          onClick={() => {
+            playBeep(1000, 50);
+            setLang('en');
+          }}
           className={lang === 'en' ? 'bg-dos-green text-dos-black' : 'border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black'}
         >
           EN
