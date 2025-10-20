@@ -57,7 +57,9 @@ export const translations = {
       messagePlaceholder: 'Ваше сообщение',
       sendButton: 'Отправить',
       successMessage: 'Сообщение отправлено!',
-      errorMessage: 'Ошибка отправки'
+      errorMessage: 'Ошибка отправки',
+      captchaLabel: 'Проверка: решите пример',
+      captchaError: 'Неверный ответ. Попробуйте снова.'
     },
     back: '[ ESC ] Назад в меню'
   },
@@ -117,7 +119,9 @@ export const translations = {
       messagePlaceholder: 'Your message',
       sendButton: 'Send',
       successMessage: 'Message sent!',
-      errorMessage: 'Send error'
+      errorMessage: 'Send error',
+      captchaLabel: 'Verification: solve the equation',
+      captchaError: 'Wrong answer. Try again.'
     },
     back: '[ ESC ] Back to menu'
   }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import TypingText from '@/components/TypingText';
@@ -16,6 +16,8 @@ interface ContactInfo {
   sendButton: string;
   successMessage: string;
   errorMessage: string;
+  captchaLabel: string;
+  captchaError: string;
 }
 
 interface ContactsSectionProps {
@@ -29,9 +31,29 @@ interface ContactsSectionProps {
 const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep }: ContactsSectionProps) => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [captcha, setCaptcha] = useState({ num1: 0, num2: 0, answer: '' });
+  const [captchaError, setCaptchaError] = useState(false);
+
+  const generateCaptcha = () => {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    setCaptcha({ num1, num2, answer: '' });
+    setCaptchaError(false);
+  };
+
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (parseInt(captcha.answer) !== captcha.num1 + captcha.num2) {
+      setCaptchaError(true);
+      playBeep(400, 100);
+      return;
+    }
+    
     setFormStatus('sending');
     playBeep(1000, 50);
     
@@ -46,15 +68,18 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
         setFormStatus('success');
         playBeep(1200, 100);
         setFormData({ name: '', email: '', message: '' });
+        generateCaptcha();
         setTimeout(() => setFormStatus('idle'), 3000);
       } else {
         setFormStatus('error');
         playBeep(400, 200);
+        generateCaptcha();
         setTimeout(() => setFormStatus('idle'), 3000);
       }
     } catch (error) {
       setFormStatus('error');
       playBeep(400, 200);
+      generateCaptcha();
       setTimeout(() => setFormStatus('idle'), 3000);
     }
   };
@@ -126,6 +151,31 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
                 rows={4}
                 className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark resize-none"
               />
+            </div>
+            <div className="space-y-2">
+              <div className="text-dos-green text-sm md:text-base">
+                {contactInfo.captchaLabel}: {captcha.num1} + {captcha.num2} = ?
+              </div>
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                value={captcha.answer}
+                onChange={(e) => {
+                  setCaptcha({ ...captcha, answer: e.target.value });
+                  setCaptchaError(false);
+                }}
+                required
+                className={`w-full bg-dos-black border-2 ${
+                  captchaError ? 'border-destructive' : 'border-dos-green'
+                } text-dos-green p-2 text-sm md:text-base focus:outline-none placeholder:text-dos-green-dark`}
+                placeholder="?"
+              />
+              {captchaError && (
+                <div className="text-destructive text-xs">
+                  {contactInfo.captchaError}
+                </div>
+              )}
             </div>
             <Button
               type="submit"
