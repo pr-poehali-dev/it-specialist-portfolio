@@ -228,12 +228,12 @@ const Index = () => {
       case 'about':
         return (
           <div className="space-y-4">
-            <div className="text-dos-green">
+            <div className="text-dos-green text-sm md:text-base">
               {showContent && <TypingText text={t.about.title} speed={20} />}
             </div>
-            <div className="flex gap-8 items-start">
-              <pre className="text-dos-green text-xs leading-tight whitespace-pre">{asciiArt.computer}</pre>
-              <div className="text-dos-green-dark pl-4 flex-1">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+              <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.computer}</pre>
+              <div className="text-dos-green-dark text-sm md:text-base md:pl-4 flex-1">
                 {showContent && <TypingText text={t.about.content} speed={15} />}
               </div>
             </div>
@@ -250,20 +250,20 @@ const Index = () => {
       case 'experience':
         return (
           <div className="space-y-4">
-            <div className="text-dos-green">
+            <div className="text-dos-green text-sm md:text-base">
               {showContent && <TypingText text={t.experienceSection.title} speed={20} />}
             </div>
-            <div className="flex gap-6">
-              <div className="space-y-6 pl-4 flex-1">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+              <div className="space-y-6 md:pl-4 flex-1">
                 {t.experienceSection.jobs.map((job, idx) => (
                   <div key={idx} className="space-y-1">
-                    <div className="text-dos-green">[{job.period}]</div>
-                    <div className="text-dos-green-dark pl-2">&gt; {job.role}</div>
-                    <div className="text-dos-green-dark pl-2 opacity-80">{job.company}</div>
+                    <div className="text-dos-green text-sm md:text-base">[{job.period}]</div>
+                    <div className="text-dos-green-dark text-sm md:text-base pl-2">&gt; {job.role}</div>
+                    <div className="text-dos-green-dark text-sm md:text-base pl-2 opacity-80">{job.company}</div>
                   </div>
                 ))}
               </div>
-              <pre className="text-dos-green text-xs leading-tight whitespace-pre hidden md:block">{asciiArt.server}</pre>
+              <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden lg:block">{asciiArt.server}</pre>
             </div>
             <Button 
               variant="outline" 
@@ -278,17 +278,17 @@ const Index = () => {
       case 'skills':
         return (
           <div className="space-y-4">
-            <div className="text-dos-green flex items-center gap-4">
-              <span>{showContent && <TypingText text={t.skillsSection.title} speed={20} />}</span>
-              <pre className="text-dos-green text-xs leading-tight whitespace-pre">{asciiArt.code}</pre>
+            <div className="text-dos-green flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+              <span className="text-sm md:text-base">{showContent && <TypingText text={t.skillsSection.title} speed={20} />}</span>
+              <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden md:block">{asciiArt.code}</pre>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pl-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 md:pl-4">
               {t.skillsSection.categories.map((category, idx) => (
                 <div key={idx} className="space-y-2">
-                  <div className="text-dos-green">[{category.name}]</div>
+                  <div className="text-dos-green text-sm md:text-base">[{category.name}]</div>
                   <div className="space-y-1 pl-2">
                     {category.items.map((item, i) => (
-                      <div key={i} className="text-dos-green-dark">&gt; {item}</div>
+                      <div key={i} className="text-dos-green-dark text-sm md:text-base">&gt; {item}</div>
                     ))}
                   </div>
                 </div>
@@ -307,15 +307,15 @@ const Index = () => {
       case 'portfolio':
         return (
           <div className="space-y-4">
-            <div className="text-dos-green flex items-center gap-4">
-              <span>{showContent && <TypingText text={t.portfolioSection.title} speed={20} />}</span>
-              <pre className="text-dos-green text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.network}</pre>
+            <div className="text-dos-green flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+              <span className="text-sm md:text-base">{showContent && <TypingText text={t.portfolioSection.title} speed={20} />}</span>
+              <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden md:block">{asciiArt.network}</pre>
             </div>
-            <div className="space-y-6 pl-4">
+            <div className="space-y-6 md:pl-4">
               {t.portfolioSection.projects.map((project, idx) => (
-                <div key={idx} className="space-y-1 border-l-2 border-dos-green-dark pl-4 py-2">
-                  <div className="text-dos-green">&gt; {project.name}</div>
-                  <div className="text-dos-green-dark pl-2 opacity-80">Tech: {project.tech}</div>
+                <div key={idx} className="space-y-1 border-l-2 border-dos-green-dark pl-3 md:pl-4 py-2">
+                  <div className="text-dos-green text-sm md:text-base">&gt; {project.name}</div>
+                  <div className="text-dos-green-dark text-xs md:text-sm pl-2 opacity-80">Tech: {project.tech}</div>
                 </div>
               ))}
             </div>
@@ -332,25 +332,25 @@ const Index = () => {
       case 'contacts':
         return (
           <div className="space-y-4">
-            <div className="text-dos-green">
+            <div className="text-dos-green text-sm md:text-base">
               {showContent && <TypingText text={t.contactsSection.title} speed={20} />}
             </div>
-            <div className="space-y-3 pl-4">
+            <div className="space-y-3 md:pl-4">
               <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
-                <Icon name="Mail" size={16} className="text-dos-green" />
-                <span className="text-dos-green-dark">{t.contactsSection.email}</span>
+                <Icon name="Mail" size={16} className="text-dos-green flex-shrink-0" />
+                <span className="text-dos-green-dark text-sm md:text-base break-all">{t.contactsSection.email}</span>
               </div>
               <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
-                <Icon name="Phone" size={16} className="text-dos-green" />
-                <span className="text-dos-green-dark">{t.contactsSection.phone}</span>
+                <Icon name="Phone" size={16} className="text-dos-green flex-shrink-0" />
+                <span className="text-dos-green-dark text-sm md:text-base">{t.contactsSection.phone}</span>
               </div>
               <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
-                <Icon name="Linkedin" size={16} className="text-dos-green" />
-                <span className="text-dos-green-dark">{t.contactsSection.linkedin}</span>
+                <Icon name="Linkedin" size={16} className="text-dos-green flex-shrink-0" />
+                <span className="text-dos-green-dark text-sm md:text-base break-all">{t.contactsSection.linkedin}</span>
               </div>
               <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
-                <Icon name="Github" size={16} className="text-dos-green" />
-                <span className="text-dos-green-dark">{t.contactsSection.github}</span>
+                <Icon name="Github" size={16} className="text-dos-green flex-shrink-0" />
+                <span className="text-dos-green-dark text-sm md:text-base break-all">{t.contactsSection.github}</span>
               </div>
             </div>
             <Button 
