@@ -1,0 +1,50 @@
+{
+  "tests": [
+    {
+      "name": "Valid contact form submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "message": "Hello, this is a test message with enough characters to pass validation."
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Invalid email format",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "John Doe",
+        "email": "invalid-email",
+        "message": "This should fail because of invalid email format."
+      },
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Message too short",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "message": "Short"
+      },
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "CORS preflight request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200,
+      "bodyMatcher": "partial"
+    }
+  ]
+}

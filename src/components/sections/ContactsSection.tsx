@@ -36,7 +36,7 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
     playBeep(1000, 50);
     
     try {
-      const response = await fetch('https://functions.poehali.dev/c271d9bd-76fc-40cb-bae2-fb6196717fcb', {
+      const response = await fetch('https://functions.poehali.dev/3fe6ac37-32dd-4977-9aee-d20afd4e01f6', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
