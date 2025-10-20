@@ -16,7 +16,7 @@ export const translations = {
     prompt: 'C:\\> Выберите раздел_',
     about: {
       title: '>>> ОБ ИВАНЕ ЕЛЬКИНЕ',
-      content: 'Высококвалифицированный ИТ-специалист с более чем 25-летним опытом работы. Глубокие знания как в разработке программного обеспечения, так и в аппаратном обеспечении. Успешный опыт реализации комплексных технических проектов от концепции до внедрения.'
+      content: 'В IT я пришел тогда, когда «парковка головок» была не метафорой, а рутиной. За 20+ лет в отрасли я видел всё: от железа до облаков. Это научило меня главному: отличать суть от шума и не поддаваться на уловки «инфоцыган».\n\nЯ не просто исполнитель. Я партнер, который:\n\n• Глубоко разберется в вашей проблеме\n• Предложит работающие, а не «модные» решения\n• Научит вашу команду и передаст опыт\n• Возглавит проект и приведет его к победе, потому что не боюсь меняться и учу этому других\n\nМой главный ресурс — это умение находить ответы там, где другие опускают руки. Обожаю сложные задачи! Есть такая? Расскажите мне о вашей цели.'
     },
     experienceSection: {
       title: '>>> ОПЫТ РАБОТЫ И КАРЬЕРНЫЙ ПУТЬ',
@@ -78,7 +78,7 @@ export const translations = {
     prompt: 'C:\\> Select section_',
     about: {
       title: '>>> ABOUT IVAN ELKIN',
-      content: 'Highly qualified IT specialist with over 25 years of experience. Deep knowledge in both software development and hardware. Successful experience implementing complex technical projects from concept to deployment.'
+      content: 'I entered IT when "parking heads" was not a metaphor, but a routine. Over 20+ years in the industry, I\'ve seen it all: from hardware to clouds. This taught me the main thing: to distinguish essence from noise and not fall for "infogypsy" tricks.\n\nI\'m not just an executor. I\'m a partner who:\n\n• Deeply understands your problem\n• Offers working, not "trendy" solutions\n• Teaches your team and shares experience\n• Leads the project to victory, because I\'m not afraid to change and teach others to do the same\n\nMy main resource is the ability to find answers where others give up. I love complex challenges! Got one? Tell me about your goal.'
     },
     experienceSection: {
       title: '>>> WORK EXPERIENCE AND CAREER PATH',
