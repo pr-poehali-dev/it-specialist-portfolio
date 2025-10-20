@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
+import TypingText from '@/components/TypingText';
 
 type Language = 'ru' | 'en';
 
@@ -158,6 +159,7 @@ const Index = () => {
   const [booted, setBooted] = useState(false);
   const [currentSection, setCurrentSection] = useState<string | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [showContent, setShowContent] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
   const t = translations[lang];
 
@@ -165,6 +167,14 @@ const Index = () => {
     const timer = setTimeout(() => setBooted(true), 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (currentSection) {
+      setShowContent(false);
+      const timer = setTimeout(() => setShowContent(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [currentSection]);
 
   const playBeep = (frequency: number = 800, duration: number = 100) => {
     if (!soundEnabled) return;
@@ -202,6 +212,7 @@ const Index = () => {
   const handleBackClick = () => {
     playBeep(600, 80);
     setCurrentSection(null);
+    setShowContent(false);
   };
 
   const toggleSound = () => {
@@ -216,11 +227,15 @@ const Index = () => {
     switch (currentSection) {
       case 'about':
         return (
-          <div className="space-y-4 animate-fade-in">
-            <div className="text-dos-green">{t.about.title}</div>
+          <div className="space-y-4">
+            <div className="text-dos-green">
+              {showContent && <TypingText text={t.about.title} speed={20} />}
+            </div>
             <div className="flex gap-8 items-start">
               <pre className="text-dos-green text-xs leading-tight whitespace-pre">{asciiArt.computer}</pre>
-              <div className="text-dos-green-dark pl-4 flex-1">{t.about.content}</div>
+              <div className="text-dos-green-dark pl-4 flex-1">
+                {showContent && <TypingText text={t.about.content} speed={15} />}
+              </div>
             </div>
             <Button 
               variant="outline" 
@@ -234,8 +249,10 @@ const Index = () => {
       
       case 'experience':
         return (
-          <div className="space-y-4 animate-fade-in">
-            <div className="text-dos-green">{t.experienceSection.title}</div>
+          <div className="space-y-4">
+            <div className="text-dos-green">
+              {showContent && <TypingText text={t.experienceSection.title} speed={20} />}
+            </div>
             <div className="flex gap-6">
               <div className="space-y-6 pl-4 flex-1">
                 {t.experienceSection.jobs.map((job, idx) => (
@@ -260,9 +277,9 @@ const Index = () => {
       
       case 'skills':
         return (
-          <div className="space-y-4 animate-fade-in">
+          <div className="space-y-4">
             <div className="text-dos-green flex items-center gap-4">
-              <span>{t.skillsSection.title}</span>
+              <span>{showContent && <TypingText text={t.skillsSection.title} speed={20} />}</span>
               <pre className="text-dos-green text-xs leading-tight whitespace-pre">{asciiArt.code}</pre>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pl-4">
@@ -289,9 +306,9 @@ const Index = () => {
       
       case 'portfolio':
         return (
-          <div className="space-y-4 animate-fade-in">
+          <div className="space-y-4">
             <div className="text-dos-green flex items-center gap-4">
-              <span>{t.portfolioSection.title}</span>
+              <span>{showContent && <TypingText text={t.portfolioSection.title} speed={20} />}</span>
               <pre className="text-dos-green text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.network}</pre>
             </div>
             <div className="space-y-6 pl-4">
@@ -314,8 +331,10 @@ const Index = () => {
       
       case 'contacts':
         return (
-          <div className="space-y-4 animate-fade-in">
-            <div className="text-dos-green">{t.contactsSection.title}</div>
+          <div className="space-y-4">
+            <div className="text-dos-green">
+              {showContent && <TypingText text={t.contactsSection.title} speed={20} />}
+            </div>
             <div className="space-y-3 pl-4">
               <div className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer">
                 <Icon name="Mail" size={16} className="text-dos-green" />
