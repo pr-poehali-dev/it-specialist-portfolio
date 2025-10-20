@@ -15,7 +15,7 @@ class ContactFormRequest(BaseModel):
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
-    Business: Send contact form messages to ivan@elkin.pro via email
+    Business: Send contact form messages to ivan@elkin.pro via email with updated SMTP credentials
     Args: event - dict with httpMethod, body (JSON with name, email, message)
           context - object with request_id, function_name attributes
     Returns: HTTP response with status
