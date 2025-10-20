@@ -66,6 +66,22 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     smtp_user = os.environ.get('SMTP_USER')
     smtp_password = os.environ.get('SMTP_PASSWORD')
     
+    print(f"SMTP Config - Host: {smtp_host}, Port: {smtp_port}, User: {smtp_user}, Pass exists: {bool(smtp_password)}")
+    
+    if not all([smtp_host, smtp_user, smtp_password]):
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({
+                'error': 'SMTP configuration incomplete',
+                'details': f'Missing: {[k for k, v in {"SMTP_HOST": smtp_host, "SMTP_USER": smtp_user, "SMTP_PASSWORD": smtp_password}.items() if not v]}'
+            }),
+            'isBase64Encoded': False
+        }
+    
     recipient_email = 'ivan@elkin.pro'
     
     msg = MIMEMultipart('alternative')
@@ -105,10 +121,27 @@ Email: {form_data.email}
     msg.attach(part2)
     
     try:
-        with smtplib.SMTP(smtp_host, smtp_port) as server:
-            server.starttls()
-            server.login(smtp_user, smtp_password)
-            server.send_message(msg)
+        print(f"Attempting to connect to {smtp_host}:{smtp_port}")
+        
+        if smtp_port == 465:
+            print("Using SMTP_SSL for port 465")
+            with smtplib.SMTP_SSL(smtp_host, smtp_port, timeout=10) as server:
+                print("Connected via SSL, attempting login")
+                server.login(smtp_user, smtp_password)
+                print("Login successful, sending message")
+                server.send_message(msg)
+                print("Message sent successfully")
+        else:
+            print("Using SMTP with STARTTLS")
+            with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as server:
+                server.set_debuglevel(1)
+                print("Connected, starting TLS")
+                server.starttls()
+                print("TLS started, attempting login")
+                server.login(smtp_user, smtp_password)
+                print("Login successful, sending message")
+                server.send_message(msg)
+                print("Message sent successfully")
         
         return {
             'statusCode': 200,
@@ -121,12 +154,15 @@ Email: {form_data.email}
         }
     
     except Exception as e:
+        print(f"Error sending email: {type(e).__name__}: {str(e)}")
+        import traceback
+        print(traceback.format_exc())
         return {
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': 'Failed to send email', 'details': str(e)}),
+            'body': json.dumps({'error': 'Failed to send email', 'details': str(e), 'type': type(e).__name__}),
             'isBase64Encoded': False
         }
