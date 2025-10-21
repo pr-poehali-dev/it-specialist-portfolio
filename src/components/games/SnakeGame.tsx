@@ -183,15 +183,15 @@ export default function SnakeGame() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4 bg-black border-2 border-dos-green rounded-lg">
-      <div className="flex justify-between items-center w-full max-w-[300px] text-dos-green font-mono text-sm">
+    <div className="flex flex-col items-center gap-4 p-4 win98-window">
+      <div className="flex justify-between items-center w-full max-w-[300px] text-win98-black font-bold text-sm">
         <div>SCORE: {score}</div>
         <div>HIGH: {highScore}</div>
       </div>
 
       <div
         ref={gameAreaRef}
-        className="relative border-2 border-dos-green bg-black touch-none"
+        className="relative win98-input bg-white touch-none"
         style={{
           width: GRID_SIZE * CELL_SIZE,
           height: GRID_SIZE * CELL_SIZE,
@@ -202,7 +202,7 @@ export default function SnakeGame() {
         {snake.map((segment, index) => (
           <div
             key={index}
-            className="absolute bg-dos-green"
+            className="absolute bg-win98-blue"
             style={{
               left: segment.x * CELL_SIZE,
               top: segment.y * CELL_SIZE,
@@ -223,20 +223,20 @@ export default function SnakeGame() {
         />
 
         {gameOver && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/80">
-            <div className="text-dos-green font-mono text-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-win98-gray/90">
+            <div className="text-win98-black font-bold text-center">
               <div className="text-xl mb-2">GAME OVER</div>
               <div className="text-sm">SCORE: {score}</div>
               {score === highScore && score > 0 && (
-                <div className="text-sm text-yellow-400 mt-1">NEW RECORD!</div>
+                <div className="text-sm text-yellow-600 mt-1">NEW RECORD!</div>
               )}
             </div>
           </div>
         )}
 
         {!isPlaying && !gameOver && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/80">
-            <div className="text-dos-green font-mono text-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-win98-gray/90">
+            <div className="text-win98-black font-bold text-center">
               <div className="text-sm mb-2">READY?</div>
               <div className="text-xs">SWIPE OR ARROWS</div>
             </div>
@@ -246,13 +246,13 @@ export default function SnakeGame() {
 
       <button
         onClick={resetGame}
-        className="flex items-center gap-2 px-4 py-2 bg-dos-green text-black font-mono text-sm hover:bg-dos-green/80 transition-colors rounded"
+        className="win98-button flex items-center gap-2 px-4 py-2 font-bold text-sm hover:bg-win98-light-gray transition-colors"
       >
         <Icon name="Play" size={16} />
         {gameOver ? 'RETRY' : 'START'}
       </button>
 
-      <div className="text-dos-green-dark font-mono text-xs text-center max-w-[300px]">
+      <div className="text-win98-dark-gray text-xs text-center max-w-[300px]">
         {isPlaying ? 'Swipe to move on mobile, arrows on desktop' : 'Eat red pixels, avoid walls & yourself'}
       </div>
     </div>

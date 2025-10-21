@@ -62,15 +62,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				dos: {
-					green: 'var(--dos-green)',
-					'green-dark': 'var(--dos-green-dark)',
-					black: 'var(--dos-black)',
-					gray: 'var(--dos-gray)'
+				win98: {
+					teal: 'var(--win98-teal)',
+					blue: 'var(--win98-blue)',
+					gray: 'var(--win98-gray)',
+					'dark-gray': 'var(--win98-dark-gray)',
+					'light-gray': 'var(--win98-light-gray)',
+					white: 'var(--win98-white)',
+					black: 'var(--win98-black)'
 				}
 			},
 			fontFamily: {
-				mono: ['IBM Plex Mono', 'monospace']
+				sans: ['Pixelify Sans', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

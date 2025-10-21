@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+
 import TypingText from '@/components/TypingText';
 import { asciiArt } from '@/lib/asciiArt';
 
@@ -18,25 +18,24 @@ interface PortfolioSectionProps {
 const PortfolioSection = ({ title, projects, showContent, backText, onBack }: PortfolioSectionProps) => {
   return (
     <div className="space-y-4">
-      <div className="text-dos-green flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-        <span className="text-sm md:text-base">{showContent && <TypingText text={title} speed={20} />}</span>
-        <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden md:block">{asciiArt.network}</pre>
+      <div className="text-win98-black flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+        <span className="font-bold text-sm md:text-base">{showContent && <TypingText text={title} speed={20} />}</span>
+        <pre className="text-win98-blue text-[10px] md:text-xs leading-tight whitespace-pre hidden md:block">{asciiArt.network}</pre>
       </div>
       <div className="space-y-6 md:pl-4">
         {projects.map((project, idx) => (
-          <div key={idx} className="space-y-1 border-l-2 border-dos-green-dark pl-3 md:pl-4 py-2">
-            <div className="text-dos-green text-sm md:text-base">&gt; {project.name}</div>
-            <div className="text-dos-green-dark text-xs md:text-sm pl-2 opacity-80">Tech: {project.tech}</div>
+          <div key={idx} className="space-y-1 border-l-2 border-win98-dark-gray pl-3 md:pl-4 py-2">
+            <div className="text-win98-black font-bold text-sm md:text-base">&gt; {project.name}</div>
+            <div className="text-win98-dark-gray text-xs md:text-sm pl-2 opacity-80">Tech: {project.tech}</div>
           </div>
         ))}
       </div>
-      <Button 
-        variant="outline" 
+      <button 
         onClick={onBack}
-        className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
+        className="win98-button px-4 py-2 mt-8 font-bold"
       >
         {backText}
-      </Button>
+      </button>
     </div>
   );
 };

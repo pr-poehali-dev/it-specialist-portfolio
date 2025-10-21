@@ -23,54 +23,54 @@ const MainMenu = ({ welcome, name, experience, menu, prompt, onSectionClick }: M
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-2">
-        <div className="text-dos-green crt-effect text-2xl">{welcome}</div>
-        <div className="text-dos-green-dark text-xl">{name}</div>
-        <div className="text-dos-green-dark">{experience}</div>
+        <div className="text-win98-black text-3xl font-bold">{welcome}</div>
+        <div className="text-win98-blue text-xl font-semibold">{name}</div>
+        <div className="text-win98-black">{experience}</div>
       </div>
       
       <div className="flex gap-8 items-start">
-        <div className="border-2 border-dos-green-dark p-6 space-y-3 flex-1">
-          <Card 
-            className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+        <div className="win98-window p-4 space-y-2 flex-1">
+          <button 
+            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
             onClick={() => onSectionClick('about')}
           >
-            <div className="text-dos-green">{menu.about}</div>
-          </Card>
-          <Card 
-            className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+            <div className="text-win98-black font-semibold">📄 {menu.about}</div>
+          </button>
+          <button 
+            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
             onClick={() => onSectionClick('experience')}
           >
-            <div className="text-dos-green">{menu.experience}</div>
-          </Card>
-          <Card 
-            className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+            <div className="text-win98-black font-semibold">💼 {menu.experience}</div>
+          </button>
+          <button 
+            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
             onClick={() => onSectionClick('skills')}
           >
-            <div className="text-dos-green">{menu.skills}</div>
-          </Card>
-          <Card 
-            className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+            <div className="text-win98-black font-semibold">⚡ {menu.skills}</div>
+          </button>
+          <button 
+            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
             onClick={() => onSectionClick('portfolio')}
           >
-            <div className="text-dos-green">{menu.portfolio}</div>
-          </Card>
-          <Card 
-            className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+            <div className="text-win98-black font-semibold">🎨 {menu.portfolio}</div>
+          </button>
+          <button 
+            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
             onClick={() => onSectionClick('game')}
           >
-            <div className="text-dos-green">{menu.game}</div>
-          </Card>
-          <Card 
-            className="bg-transparent border-none cursor-pointer hover:bg-dos-gray transition-colors p-3"
+            <div className="text-win98-black font-semibold">🎮 {menu.game}</div>
+          </button>
+          <button 
+            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
             onClick={() => onSectionClick('contacts')}
           >
-            <div className="text-dos-green">{menu.contacts}</div>
-          </Card>
+            <div className="text-win98-black font-semibold">📧 {menu.contacts}</div>
+          </button>
         </div>
-        <pre className="text-dos-green text-xs leading-tight whitespace-pre hidden lg:block">{asciiArt.computer}</pre>
+        <pre className="text-win98-black text-xs leading-tight whitespace-pre hidden lg:block">{asciiArt.computer}</pre>
       </div>
       
-      <div className="text-dos-green-dark">
+      <div className="text-win98-dark-gray">
         {prompt}
       </div>
     </div>

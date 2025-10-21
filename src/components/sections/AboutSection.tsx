@@ -13,22 +13,21 @@ interface AboutSectionProps {
 const AboutSection = ({ title, content, showContent, backText, onBack }: AboutSectionProps) => {
   return (
     <div className="space-y-4">
-      <div className="text-dos-green text-sm md:text-base">
+      <div className="text-win98-black text-2xl font-bold">
         {showContent && <TypingText text={title} speed={20} />}
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
-        <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.computer}</pre>
-        <div className="text-dos-green-dark text-sm md:text-base md:pl-4 flex-1">
+        <pre className="text-win98-black text-[10px] md:text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.computer}</pre>
+        <div className="text-win98-black text-sm md:text-base md:pl-4 flex-1">
           {showContent && <TypingText text={content} speed={15} />}
         </div>
       </div>
-      <Button 
-        variant="outline" 
+      <button 
         onClick={onBack}
-        className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
+        className="win98-button px-4 py-2 mt-8 hover:bg-win98-light-gray"
       >
         {backText}
-      </Button>
+      </button>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+
 import Icon from '@/components/ui/icon';
 import TypingText from '@/components/TypingText';
 
@@ -86,53 +86,53 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
 
   return (
     <div className="space-y-6">
-      <div className="text-dos-green text-sm md:text-base">
+      <div className="text-win98-black font-bold text-sm md:text-base">
         {showContent && <TypingText text={contactInfo.title} speed={20} />}
       </div>
       <div className="space-y-3 md:pl-4">
         <a 
           href="mailto:info@elkin.pro" 
-          className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer"
+          className="flex items-center gap-3 hover:text-win98-blue transition-colors cursor-pointer"
         >
-          <Icon name="Mail" size={16} className="text-dos-green flex-shrink-0" />
-          <span className="text-dos-green-dark text-sm md:text-base break-all">{contactInfo.email}</span>
+          <Icon name="Mail" size={16} className="text-win98-blue flex-shrink-0" />
+          <span className="text-win98-dark-gray text-sm md:text-base break-all">{contactInfo.email}</span>
         </a>
         <a 
           href="tel:+79637178053" 
-          className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer"
+          className="flex items-center gap-3 hover:text-win98-blue transition-colors cursor-pointer"
         >
-          <Icon name="Phone" size={16} className="text-dos-green flex-shrink-0" />
-          <span className="text-dos-green-dark text-sm md:text-base">{contactInfo.phone}</span>
+          <Icon name="Phone" size={16} className="text-win98-blue flex-shrink-0" />
+          <span className="text-win98-dark-gray text-sm md:text-base">{contactInfo.phone}</span>
         </a>
         <a 
           href="https://linkedin.com/in/ivanelkin" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer"
+          className="flex items-center gap-3 hover:text-win98-blue transition-colors cursor-pointer"
         >
-          <Icon name="Linkedin" size={16} className="text-dos-green flex-shrink-0" />
-          <span className="text-dos-green-dark text-sm md:text-base break-all">{contactInfo.linkedin}</span>
+          <Icon name="Linkedin" size={16} className="text-win98-blue flex-shrink-0" />
+          <span className="text-win98-dark-gray text-sm md:text-base break-all">{contactInfo.linkedin}</span>
         </a>
         <a 
           href="https://github.com/ivan-elkin" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex items-center gap-3 hover:text-dos-green transition-colors cursor-pointer"
+          className="flex items-center gap-3 hover:text-win98-blue transition-colors cursor-pointer"
         >
-          <Icon name="Github" size={16} className="text-dos-green flex-shrink-0" />
-          <span className="text-dos-green-dark text-sm md:text-base break-all">{contactInfo.github}</span>
+          <Icon name="Github" size={16} className="text-win98-blue flex-shrink-0" />
+          <span className="text-win98-dark-gray text-sm md:text-base break-all">{contactInfo.github}</span>
         </a>
       </div>
 
-      <div className="border-2 border-dos-green-dark p-4 md:p-6 space-y-4">
-        <div className="text-dos-green text-sm md:text-base mb-4">
+      <div className="border-2 border-win98-dark-gray p-4 md:p-6 space-y-4">
+        <div className="text-win98-black font-bold text-sm md:text-base mb-4">
           {contactInfo.formTitle}
         </div>
         
         {formStatus === 'success' ? (
-          <div className="text-dos-green text-center py-8">
+          <div className="text-win98-black text-center py-8">
             <div className="text-2xl mb-2">✓</div>
-            <div>{contactInfo.successMessage}</div>
+            <div className="font-bold">{contactInfo.successMessage}</div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -144,7 +144,7 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
                 minLength={2}
-                className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark"
+                className="w-full bg-win98-gray border-2 border-win98-dark-gray text-win98-black p-2 text-sm md:text-base focus:outline-none focus:border-win98-blue placeholder:text-win98-dark-gray"
               />
             </div>
             <div>
@@ -154,7 +154,7 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark"
+                className="w-full bg-win98-gray border-2 border-win98-dark-gray text-win98-black p-2 text-sm md:text-base focus:outline-none focus:border-win98-blue placeholder:text-win98-dark-gray"
               />
             </div>
             <div>
@@ -165,11 +165,11 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
                 required
                 minLength={10}
                 rows={4}
-                className="w-full bg-dos-black border-2 border-dos-green text-dos-green p-2 text-sm md:text-base focus:outline-none focus:border-dos-green placeholder:text-dos-green-dark resize-none"
+                className="w-full bg-win98-gray border-2 border-win98-dark-gray text-win98-black p-2 text-sm md:text-base focus:outline-none focus:border-win98-blue placeholder:text-win98-dark-gray resize-none"
               />
             </div>
             <div className="space-y-2">
-              <div className="text-dos-green text-sm md:text-base">
+              <div className="text-win98-black font-bold text-sm md:text-base">
                 {contactInfo.captchaLabel}: {captcha.num1} + {captcha.num2} = ?
               </div>
               <input
@@ -182,9 +182,9 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
                   setCaptchaError(false);
                 }}
                 required
-                className={`w-full bg-dos-black border-2 ${
-                  captchaError ? 'border-destructive' : 'border-dos-green'
-                } text-dos-green p-2 text-sm md:text-base focus:outline-none placeholder:text-dos-green-dark`}
+                className={`w-full bg-win98-gray border-2 ${
+                  captchaError ? 'border-destructive' : 'border-win98-dark-gray'
+                } text-win98-black p-2 text-sm md:text-base focus:outline-none placeholder:text-win98-dark-gray`}
                 placeholder="?"
               />
               {captchaError && (
@@ -193,13 +193,13 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
                 </div>
               )}
             </div>
-            <Button
+            <button
               type="submit"
               disabled={formStatus === 'sending'}
-              className="w-full bg-dos-green text-dos-black hover:bg-dos-green-dark border-2 border-dos-green"
+              className="win98-button w-full px-4 py-2 font-bold"
             >
               {formStatus === 'sending' ? '...' : contactInfo.sendButton}
-            </Button>
+            </button>
             {formStatus === 'error' && (
               <div className="text-destructive text-sm text-center">
                 {contactInfo.errorMessage}
@@ -209,13 +209,12 @@ const ContactsSection = ({ contactInfo, showContent, backText, onBack, playBeep 
         )}
       </div>
 
-      <Button 
-        variant="outline" 
+      <button 
         onClick={onBack}
-        className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
+        className="win98-button px-4 py-2 mt-8 font-bold"
       >
         {backText}
-      </Button>
+      </button>
     </div>
   );
 };

@@ -45,13 +45,13 @@ export default function GameLeaderboard() {
   };
 
   return (
-    <div className="bg-black border-2 border-dos-green p-4 rounded-lg max-w-md">
-      <div className="text-dos-green font-mono mb-4">
-        <div className="text-lg mb-2">╔═══ HALL OF FAME ═══╗</div>
+    <div className="bg-win98-gray win98-window p-4 max-w-md">
+      <div className="text-win98-black font-mono mb-4">
+        <div className="text-lg mb-2 font-bold">╔═══ HALL OF FAME ═══╗</div>
       </div>
       
       {scores.length === 0 ? (
-        <div className="text-dos-green-dark font-mono text-sm text-center py-4">
+        <div className="text-win98-dark-gray font-mono text-sm text-center py-4">
           Пока нет рекордов.<br/>Сыграй в игры!
         </div>
       ) : (
@@ -59,15 +59,15 @@ export default function GameLeaderboard() {
           {scores.map((score, index) => (
             <div 
               key={index}
-              className="flex justify-between items-center text-dos-green font-mono text-sm border border-dos-green/30 p-2"
+              className="flex justify-between items-center text-win98-black font-mono text-sm win98-input p-2"
             >
               <div className="flex gap-3">
-                <span className="text-dos-green-dark">#{index + 1}</span>
-                <span className="text-yellow-400">{score.game}</span>
+                <span className="text-win98-dark-gray">#{index + 1}</span>
+                <span className="text-win98-blue font-bold">{score.game}</span>
               </div>
               <div className="flex gap-3">
-                <span>{score.score}</span>
-                <span className="text-dos-green-dark text-xs">{score.date}</span>
+                <span className="font-bold">{score.score}</span>
+                <span className="text-win98-dark-gray text-xs">{score.date}</span>
               </div>
             </div>
           ))}
@@ -77,7 +77,7 @@ export default function GameLeaderboard() {
       {scores.length > 0 && (
         <button
           onClick={clearScores}
-          className="mt-4 w-full py-2 border border-dos-green text-dos-green hover:bg-dos-green hover:text-black font-mono text-xs transition-colors"
+          className="win98-button mt-4 w-full py-2 font-mono text-xs font-bold"
         >
           ОЧИСТИТЬ РЕКОРДЫ
         </button>

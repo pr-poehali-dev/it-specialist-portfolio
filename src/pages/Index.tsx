@@ -104,19 +104,19 @@ const Index = () => {
       case 'game':
         return (
           <div className="space-y-8">
-            <div className="text-dos-green text-xl font-mono crt-effect mb-4">
-              {showContent && '>>> RETRO ARCADE'}
+            <div className="text-win98-black text-2xl font-bold mb-4">
+              {showContent && '🎮 RETRO ARCADE'}
             </div>
             {showContent && (
               <>
                 <GameLeaderboard />
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <div className="text-dos-green font-mono text-lg mb-3">SNAKE</div>
+                    <div className="text-win98-black font-bold text-lg mb-3">🐍 SNAKE</div>
                     <SnakeGame />
                   </div>
                   <div>
-                    <div className="text-dos-green font-mono text-lg mb-3">TETRIS</div>
+                    <div className="text-win98-black font-bold text-lg mb-3">🧱 TETRIS</div>
                     <TetrisGame />
                   </div>
                 </div>
@@ -124,7 +124,7 @@ const Index = () => {
             )}
             <button
               onClick={handleBackClick}
-              className="text-dos-green hover:text-dos-green/80 font-mono text-sm transition-colors flex items-center gap-2"
+              className="win98-button px-4 py-2 flex items-center gap-2 hover:bg-win98-light-gray"
             >
               <Icon name="ArrowLeft" size={16} />
               {t.back}
@@ -162,57 +162,51 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-dos-black scanline">
-      <div className="absolute top-4 right-4 flex gap-2">
-        <Button
-          variant="outline"
-          size="sm"
+    <div className="min-h-screen bg-win98-teal p-4">
+      <div className="absolute top-6 right-6 flex gap-2 z-10">
+        <button
           onClick={toggleSound}
-          className={soundEnabled 
-            ? 'border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black' 
-            : 'border-dos-green-dark text-dos-green-dark hover:bg-dos-green-dark hover:text-dos-black opacity-50'
-          }
+          className={`win98-button px-3 py-2 ${soundEnabled ? '' : 'opacity-50'}`}
         >
           {soundEnabled ? <Icon name="Volume2" size={16} /> : <Icon name="VolumeX" size={16} />}
-        </Button>
-        <Button
-          variant={lang === 'ru' ? 'default' : 'outline'}
-          size="sm"
+        </button>
+        <button
           onClick={() => {
             playBeep(1000, 50);
             setLang('ru');
           }}
-          className={lang === 'ru' ? 'bg-dos-green text-dos-black' : 'border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black'}
+          className={`win98-button px-3 py-2 ${lang === 'ru' ? 'border-4 border-win98-black' : ''}`}
         >
           RU
-        </Button>
-        <Button
-          variant={lang === 'en' ? 'default' : 'outline'}
-          size="sm"
+        </button>
+        <button
           onClick={() => {
             playBeep(1000, 50);
             setLang('en');
           }}
-          className={lang === 'en' ? 'bg-dos-green text-dos-black' : 'border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black'}
+          className={`win98-button px-3 py-2 ${lang === 'en' ? 'border-4 border-win98-black' : ''}`}
         >
           EN
-        </Button>
+        </button>
       </div>
       
       <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <div className="space-y-2 mb-8">
-          <div className="text-dos-green crt-effect text-sm font-mono">
-            ╔════════════════════════════════════════════════════════════╗
+        <div className="win98-window p-1 mb-8">
+          <div className="win98-titlebar px-2 py-1 flex items-center justify-between mb-1">
+            <div className="flex items-center gap-2">
+              <Icon name="Monitor" size={16} className="text-white" />
+              <span className="text-white font-bold text-sm">Portfolio - Microsoft Internet Explorer</span>
+            </div>
+            <div className="flex gap-1">
+              <button className="win98-button w-6 h-6 text-xs font-bold">_</button>
+              <button className="win98-button w-6 h-6 text-xs font-bold">□</button>
+              <button className="win98-button w-6 h-6 text-xs font-bold">✕</button>
+            </div>
           </div>
-          <div className="text-dos-green crt-effect text-sm font-mono text-center">
-            MS-DOS Version 6.22 (C) Copyright 1981-1994 Microsoft Corp.
-          </div>
-          <div className="text-dos-green crt-effect text-sm font-mono">
-            ╚════════════════════════════════════════════════════════════╝
+          <div className="bg-win98-white p-6 border-2 border-win98-gray">
+            {renderSection()}
           </div>
         </div>
-        
-        {renderSection()}
       </div>
     </div>
   );

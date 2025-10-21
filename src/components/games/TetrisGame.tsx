@@ -10,13 +10,13 @@ const BOARD_HEIGHT = 20;
 const CELL_SIZE = 20;
 
 const TETROMINOS: { [key: string]: { shape: Tetromino; color: string } } = {
-  I: { shape: [[1, 1, 1, 1]], color: 'bg-cyan-500' },
-  O: { shape: [[1, 1], [1, 1]], color: 'bg-yellow-500' },
-  T: { shape: [[0, 1, 0], [1, 1, 1]], color: 'bg-purple-500' },
-  S: { shape: [[0, 1, 1], [1, 1, 0]], color: 'bg-green-500' },
-  Z: { shape: [[1, 1, 0], [0, 1, 1]], color: 'bg-red-500' },
-  J: { shape: [[1, 0, 0], [1, 1, 1]], color: 'bg-blue-500' },
-  L: { shape: [[0, 0, 1], [1, 1, 1]], color: 'bg-orange-500' },
+  I: { shape: [[1, 1, 1, 1]], color: 'bg-win98-blue' },
+  O: { shape: [[1, 1], [1, 1]], color: 'bg-win98-blue' },
+  T: { shape: [[0, 1, 0], [1, 1, 1]], color: 'bg-win98-blue' },
+  S: { shape: [[0, 1, 1], [1, 1, 0]], color: 'bg-win98-blue' },
+  Z: { shape: [[1, 1, 0], [0, 1, 1]], color: 'bg-win98-blue' },
+  J: { shape: [[1, 0, 0], [1, 1, 1]], color: 'bg-win98-blue' },
+  L: { shape: [[0, 0, 1], [1, 1, 1]], color: 'bg-win98-blue' },
 };
 
 const TETROMINO_KEYS = Object.keys(TETROMINOS);
@@ -307,15 +307,15 @@ export default function TetrisGame() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4 bg-black border-2 border-dos-green rounded-lg">
-      <div className="grid grid-cols-3 gap-4 w-full max-w-[200px] text-dos-green font-mono text-xs">
+    <div className="flex flex-col items-center gap-4 p-4 bg-win98-gray win98-window">
+      <div className="grid grid-cols-3 gap-4 w-full max-w-[200px] text-win98-black font-mono text-xs font-bold">
         <div>SCORE<br/>{score}</div>
         <div>LEVEL<br/>{level}</div>
         <div>LINES<br/>{lines}</div>
       </div>
 
       <div
-        className="relative border-2 border-dos-green bg-black touch-none"
+        className="relative bg-white win98-input touch-none"
         style={{
           width: BOARD_WIDTH * CELL_SIZE,
           height: BOARD_HEIGHT * CELL_SIZE,
@@ -327,7 +327,7 @@ export default function TetrisGame() {
           row.map((cell, x) => (
             <div
               key={`${y}-${x}`}
-              className={`absolute border border-dos-green/20 ${cell ? 'bg-dos-green' : ''}`}
+              className={`absolute border border-win98-dark-gray/20 ${cell ? 'bg-win98-blue' : ''}`}
               style={{
                 left: x * CELL_SIZE,
                 top: y * CELL_SIZE,
@@ -339,21 +339,21 @@ export default function TetrisGame() {
         )}
 
         {gameOver && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/80">
-            <div className="text-dos-green font-mono text-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-win98-gray/95">
+            <div className="text-win98-black font-mono text-center font-bold">
               <div className="text-xl mb-2">GAME OVER</div>
               <div className="text-sm">SCORE: {score}</div>
               <div className="text-sm">HIGH: {highScore}</div>
               {score === highScore && score > 0 && (
-                <div className="text-sm text-yellow-400 mt-1">NEW RECORD!</div>
+                <div className="text-sm text-win98-blue mt-1">NEW RECORD!</div>
               )}
             </div>
           </div>
         )}
 
         {!isPlaying && !gameOver && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/80">
-            <div className="text-dos-green font-mono text-center text-sm">
+          <div className="absolute inset-0 flex items-center justify-center bg-win98-gray/95">
+            <div className="text-win98-black font-mono text-center text-sm font-bold">
               READY?
             </div>
           </div>
@@ -362,17 +362,17 @@ export default function TetrisGame() {
 
       <button
         onClick={resetGame}
-        className="flex items-center gap-2 px-4 py-2 bg-dos-green text-black font-mono text-sm hover:bg-dos-green/80 transition-colors rounded"
+        className="win98-button flex items-center gap-2 px-4 py-2 font-mono text-sm font-bold"
       >
         <Icon name="Play" size={16} />
         {gameOver ? 'RETRY' : 'START'}
       </button>
 
-      <div className="text-dos-green-dark font-mono text-xs text-center max-w-[200px]">
+      <div className="text-win98-dark-gray font-mono text-xs text-center max-w-[200px]">
         {isPlaying ? '← → move, ↑/tap rotate, ↓ drop' : 'Classic Tetris'}
       </div>
       
-      <div className="text-dos-green font-mono text-xs">HIGH SCORE: {highScore}</div>
+      <div className="text-win98-black font-mono text-xs font-bold">HIGH SCORE: {highScore}</div>
     </div>
   );
 }
