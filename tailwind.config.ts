@@ -73,7 +73,7 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['Pixelify Sans', 'sans-serif']
+				sans: ['Tahoma', 'Trebuchet MS', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

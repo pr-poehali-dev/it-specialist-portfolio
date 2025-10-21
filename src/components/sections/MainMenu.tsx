@@ -67,7 +67,7 @@ const MainMenu = ({ welcome, name, experience, menu, prompt, onSectionClick }: M
             <div className="text-win98-black font-semibold">📧 {menu.contacts}</div>
           </button>
         </div>
-        <pre className="text-win98-black text-xs leading-tight whitespace-pre hidden lg:block">{asciiArt.computer}</pre>
+        <div className="text-6xl hidden lg:block">{asciiArt.computer}</div>
       </div>
       
       <div className="text-win98-dark-gray">

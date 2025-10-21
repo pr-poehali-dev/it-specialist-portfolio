@@ -17,7 +17,7 @@ const AboutSection = ({ title, content, showContent, backText, onBack }: AboutSe
         {showContent && <TypingText text={title} speed={20} />}
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
-        <pre className="text-win98-black text-[10px] md:text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.computer}</pre>
+        <div className="text-5xl md:text-6xl hidden sm:block">{asciiArt.computer}</div>
         <div className="text-win98-black text-sm md:text-base md:pl-4 flex-1">
           {showContent && <TypingText text={content} speed={15} />}
         </div>

@@ -10,9 +10,8 @@ import ExperienceSection from '@/components/sections/ExperienceSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import PortfolioSection from '@/components/sections/PortfolioSection';
 import ContactsSection from '@/components/sections/ContactsSection';
-import SnakeGame from '@/components/games/SnakeGame';
-import TetrisGame from '@/components/games/TetrisGame';
-import GameLeaderboard from '@/components/games/GameLeaderboard';
+import MinesweeperGame from '@/components/games/MinesweeperGame';
+import SolitaireGame from '@/components/games/SolitaireGame';
 
 const Index = () => {
   const [lang, setLang] = useState<Language>('ru');
@@ -105,19 +104,18 @@ const Index = () => {
         return (
           <div className="space-y-8">
             <div className="text-win98-black text-2xl font-bold mb-4">
-              {showContent && '🎮 RETRO ARCADE'}
+              {showContent && '🎮 CLASSIC GAMES'}
             </div>
             {showContent && (
               <>
-                <GameLeaderboard />
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <div className="text-win98-black font-bold text-lg mb-3">🐍 SNAKE</div>
-                    <SnakeGame />
+                    <div className="text-win98-black font-bold text-lg mb-3">💣 MINESWEEPER</div>
+                    <MinesweeperGame />
                   </div>
                   <div>
-                    <div className="text-win98-black font-bold text-lg mb-3">🧱 TETRIS</div>
-                    <TetrisGame />
+                    <div className="text-win98-black font-bold text-lg mb-3">🃏 SOLITAIRE</div>
+                    <SolitaireGame />
                   </div>
                 </div>
               </>
