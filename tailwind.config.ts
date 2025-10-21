@@ -70,6 +70,12 @@ export default {
 					'light-gray': 'var(--win98-light-gray)',
 					white: 'var(--win98-white)',
 					black: 'var(--win98-black)'
+				},
+				dos: {
+					green: 'var(--dos-green)',
+					'green-dark': 'var(--dos-green-dark)',
+					black: 'var(--dos-black)',
+					gray: 'var(--dos-gray)'
 				}
 			},
 			fontFamily: {

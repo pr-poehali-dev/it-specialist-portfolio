@@ -17,60 +17,70 @@ interface MainMenuProps {
   menu: MenuItems;
   prompt: string;
   onSectionClick: (section: string) => void;
+  version?: 'dos' | 'win98';
 }
 
-const MainMenu = ({ welcome, name, experience, menu, prompt, onSectionClick }: MainMenuProps) => {
+const MainMenu = ({ welcome, name, experience, menu, prompt, onSectionClick, version = 'win98' }: MainMenuProps) => {
+  const isDos = version === 'dos';
+  
+  const textPrimary = isDos ? 'text-dos-green' : 'text-win98-black';
+  const textSecondary = isDos ? 'text-dos-green-dark' : 'text-win98-blue';
+  const textMuted = isDos ? 'text-dos-green-dark' : 'text-win98-dark-gray';
+  const windowClass = isDos ? 'border-2 border-dos-green bg-dos-gray font-mono' : 'win98-window';
+  const buttonClass = isDos ? 'border-2 border-dos-green bg-dos-black font-mono' : 'win98-button';
+  const buttonHover = isDos ? 'hover:bg-dos-gray hover:text-dos-green' : 'hover:bg-win98-light-gray';
+  
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-2">
-        <div className="text-win98-black text-3xl font-bold">{welcome}</div>
-        <div className="text-win98-blue text-xl font-semibold">{name}</div>
-        <div className="text-win98-black">{experience}</div>
+        <div className={`${textPrimary} text-3xl font-bold ${isDos ? 'font-mono' : ''}`}>{welcome}</div>
+        <div className={`${textSecondary} text-xl font-semibold ${isDos ? 'font-mono' : ''}`}>{name}</div>
+        <div className={`${textPrimary} ${isDos ? 'font-mono' : ''}`}>{experience}</div>
       </div>
       
       <div className="flex gap-8 items-start">
-        <div className="win98-window p-4 space-y-2 flex-1">
+        <div className={`${windowClass} p-4 space-y-2 flex-1`}>
           <button 
-            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
+            className={`${buttonClass} w-full text-left px-4 py-3 ${buttonHover} transition-colors`}
             onClick={() => onSectionClick('about')}
           >
-            <div className="text-win98-black font-semibold">📄 {menu.about}</div>
+            <div className={`${textPrimary} font-semibold`}>{isDos ? '[1]' : '📄'} {menu.about}</div>
           </button>
           <button 
-            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
+            className={`${buttonClass} w-full text-left px-4 py-3 ${buttonHover} transition-colors`}
             onClick={() => onSectionClick('experience')}
           >
-            <div className="text-win98-black font-semibold">💼 {menu.experience}</div>
+            <div className={`${textPrimary} font-semibold`}>{isDos ? '[2]' : '💼'} {menu.experience}</div>
           </button>
           <button 
-            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
+            className={`${buttonClass} w-full text-left px-4 py-3 ${buttonHover} transition-colors`}
             onClick={() => onSectionClick('skills')}
           >
-            <div className="text-win98-black font-semibold">⚡ {menu.skills}</div>
+            <div className={`${textPrimary} font-semibold`}>{isDos ? '[3]' : '⚡'} {menu.skills}</div>
           </button>
           <button 
-            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
+            className={`${buttonClass} w-full text-left px-4 py-3 ${buttonHover} transition-colors`}
             onClick={() => onSectionClick('portfolio')}
           >
-            <div className="text-win98-black font-semibold">🎨 {menu.portfolio}</div>
+            <div className={`${textPrimary} font-semibold`}>{isDos ? '[4]' : '🎨'} {menu.portfolio}</div>
           </button>
           <button 
-            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
+            className={`${buttonClass} w-full text-left px-4 py-3 ${buttonHover} transition-colors`}
             onClick={() => onSectionClick('game')}
           >
-            <div className="text-win98-black font-semibold">🎮 {menu.game}</div>
+            <div className={`${textPrimary} font-semibold`}>{isDos ? '[5]' : '🎮'} {menu.game}</div>
           </button>
           <button 
-            className="win98-button w-full text-left px-4 py-3 hover:bg-win98-light-gray transition-colors"
+            className={`${buttonClass} w-full text-left px-4 py-3 ${buttonHover} transition-colors`}
             onClick={() => onSectionClick('contacts')}
           >
-            <div className="text-win98-black font-semibold">📧 {menu.contacts}</div>
+            <div className={`${textPrimary} font-semibold`}>{isDos ? '[6]' : '📧'} {menu.contacts}</div>
           </button>
         </div>
-        <div className="text-6xl hidden lg:block">{asciiArt.computer}</div>
+        <div className={`text-6xl hidden lg:block ${isDos ? 'text-dos-green' : ''}`}>{asciiArt.computer}</div>
       </div>
       
-      <div className="text-win98-dark-gray">
+      <div className={`${textMuted} ${isDos ? 'font-mono' : ''}`}>
         {prompt}
       </div>
     </div>
