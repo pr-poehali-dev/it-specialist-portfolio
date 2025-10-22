@@ -8,33 +8,27 @@ interface AboutSectionProps {
   showContent: boolean;
   backText: string;
   onBack: () => void;
-  version?: 'dos' | 'win98';
 }
 
-const AboutSection = ({ title, content, showContent, backText, onBack, version = 'win98' }: AboutSectionProps) => {
-  const isDos = version === 'dos';
-  
-  const textPrimary = isDos ? 'text-dos-green' : 'text-win98-black';
-  const buttonClass = isDos ? 'border-2 border-dos-green bg-dos-black font-mono' : 'win98-button';
-  const buttonHover = isDos ? 'hover:bg-dos-gray hover:text-dos-green' : 'hover:bg-win98-light-gray';
-  
+const AboutSection = ({ title, content, showContent, backText, onBack }: AboutSectionProps) => {
   return (
     <div className="space-y-4">
-      <div className={`${textPrimary} text-2xl font-bold ${isDos ? 'font-mono' : ''}`}>
+      <div className="text-dos-green text-sm md:text-base">
         {showContent && <TypingText text={title} speed={20} />}
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
-        <div className={`text-5xl md:text-6xl hidden sm:block ${isDos ? 'text-dos-green' : ''}`}>{asciiArt.computer}</div>
-        <div className={`${textPrimary} text-sm md:text-base md:pl-4 flex-1 ${isDos ? 'font-mono' : ''}`}>
+        <pre className="text-dos-green text-[10px] md:text-xs leading-tight whitespace-pre hidden sm:block">{asciiArt.computer}</pre>
+        <div className="text-dos-green-dark text-sm md:text-base md:pl-4 flex-1">
           {showContent && <TypingText text={content} speed={15} />}
         </div>
       </div>
-      <button 
+      <Button 
+        variant="outline" 
         onClick={onBack}
-        className={`${buttonClass} px-4 py-2 mt-8 ${buttonHover}`}
+        className="mt-8 border-dos-green text-dos-green hover:bg-dos-green hover:text-dos-black"
       >
         {backText}
-      </button>
+      </Button>
     </div>
   );
 };

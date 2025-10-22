@@ -2,7 +2,7 @@ export type Language = 'ru' | 'en';
 
 export const translations = {
   ru: {
-    boot: 'Starting Windows 98...',
+    boot: 'ЗАГРУЗКА СИСТЕМЫ...',
     welcome: 'Добро пожаловать в систему',
     name: 'Иван Елькин',
     experience: '25+ лет опыта',
@@ -73,7 +73,7 @@ export const translations = {
     back: '[ ESC ] Назад в меню'
   },
   en: {
-    boot: 'Starting Windows 98...',
+    boot: 'SYSTEM LOADING...',
     welcome: 'Welcome to the system',
     name: 'Ivan Elkin',
     experience: '25+ years of experience',

@@ -62,15 +62,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				win98: {
-					teal: 'var(--win98-teal)',
-					blue: 'var(--win98-blue)',
-					gray: 'var(--win98-gray)',
-					'dark-gray': 'var(--win98-dark-gray)',
-					'light-gray': 'var(--win98-light-gray)',
-					white: 'var(--win98-white)',
-					black: 'var(--win98-black)'
-				},
 				dos: {
 					green: 'var(--dos-green)',
 					'green-dark': 'var(--dos-green-dark)',
@@ -79,7 +70,7 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['Tahoma', 'Trebuchet MS', 'sans-serif']
+				mono: ['IBM Plex Mono', 'monospace']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
