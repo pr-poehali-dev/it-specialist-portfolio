@@ -45,7 +45,7 @@ export const translations = {
       title: '>>> ОПЫТ И КЛЮЧЕВЫЕ ПРОЕКТЫ',
       projects: [
         { name: 'Система «Умное предприятие»', tech: 'Управление инфраструктурой: Scada, BMS, IIoT, ИИ-аналитика' },
-        { name: 'Комплекс «Virtual Visit Kit»', tech: 'Удаленный аудит инфраструктуры (награждён)' },
+        { name: 'Комплекс «Virtual Visit Kit»', tech: 'Удаленный аудит инфраструктуры (награждён на международном конкурсе)' },
         { name: 'Миграция в облако и ЦОД', tech: '8 серверов, 200+ сайтов, 500к+ посещений/мес' },
         { name: 'Оптимизация IT-бюджета', tech: 'Сокращение расходов на 40% (облака + телеком)' },
         { name: 'Отказоустойчивая сеть', tech: 'ЛВС для 150-200 пользователей, автопереключение' },
@@ -116,7 +116,7 @@ export const translations = {
       title: '>>> EXPERIENCE AND KEY PROJECTS',
       projects: [
         { name: 'Smart Enterprise System', tech: 'Infrastructure management: Scada, BMS, IIoT, AI analytics' },
-        { name: 'Virtual Visit Kit', tech: 'Remote infrastructure audit (awarded)' },
+        { name: 'Virtual Visit Kit', tech: 'Remote infrastructure audit (awarded at international competition)' },
         { name: 'Cloud & Data Center Migration', tech: '8 servers, 200+ sites, 500k+ visits/month' },
         { name: 'IT Budget Optimization', tech: '40% cost reduction (cloud + telecom)' },
         { name: 'Fault-Tolerant Network', tech: 'LAN for 150-200 users, auto-failover' },
