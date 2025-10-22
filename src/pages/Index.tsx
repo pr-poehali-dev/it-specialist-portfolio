@@ -213,6 +213,19 @@ const Index = () => {
         </div>
         
         {renderSection()}
+        
+        <footer className="mt-16 pt-8 border-t border-dos-green/30">
+          <div className="text-dos-green crt-effect text-xs font-mono text-center space-y-2">
+            <div>© 2024 Ivan Elkin. All rights reserved.</div>
+            <div className="flex justify-center gap-2 flex-wrap">
+              <span>#ITDirector</span>
+              <span>#SystemArchitect</span>
+              <span>#CloudInfrastructure</span>
+              <span>#Cybersecurity</span>
+              <span>#EnterpriseIT</span>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
