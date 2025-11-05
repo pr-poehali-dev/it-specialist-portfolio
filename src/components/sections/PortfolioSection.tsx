@@ -5,6 +5,8 @@ import { asciiArt } from '@/lib/asciiArt';
 interface Project {
   name: string;
   tech: string;
+  link?: string;
+  linkText?: string;
 }
 
 interface PortfolioSectionProps {
@@ -27,6 +29,18 @@ const PortfolioSection = ({ title, projects, showContent, backText, onBack }: Po
           <div key={idx} className="space-y-1 border-l-2 border-dos-green-dark pl-3 md:pl-4 py-2">
             <div className="text-dos-green text-sm md:text-base">&gt; {project.name}</div>
             <div className="text-dos-green-dark text-xs md:text-sm pl-2 opacity-80">Tech: {project.tech}</div>
+            {project.link && (
+              <div className="pl-2">
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-dos-green text-xs md:text-sm hover:underline inline-flex items-center gap-1"
+                >
+                  → {project.linkText}
+                </a>
+              </div>
+            )}
           </div>
         ))}
       </div>
