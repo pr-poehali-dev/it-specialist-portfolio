@@ -5,7 +5,7 @@ export const translations = {
     boot: 'ЗАГРУЗКА СИСТЕМЫ...',
     welcome: 'Добро пожаловать в систему',
     name: 'Иван Елькин',
-    experience: '25+ лет опыта',
+    experience: 'Богатый опыт работы',
     menu: {
       about: '1. О специалисте',
       experience: '2. Опыт работы',
@@ -76,7 +76,7 @@ export const translations = {
     boot: 'SYSTEM LOADING...',
     welcome: 'Welcome to the system',
     name: 'Ivan Elkin',
-    experience: '25+ years of experience',
+    experience: 'Rich work experience',
     menu: {
       about: '1. About',
       experience: '2. Work Experience',
