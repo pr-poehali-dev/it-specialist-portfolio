@@ -44,7 +44,7 @@ export const translations = {
     portfolioSection: {
       title: '>>> ОПЫТ И КЛЮЧЕВЫЕ ПРОЕКТЫ',
       projects: [
-        { name: 'Система «Умное предприятие»', tech: 'Управление инфраструктурой: Scada, BMS, IIoT, ИИ-аналитика' },
+        { name: 'Система «Умное предприятие»', tech: 'Управление инфраструктурой: Scada, BMS, IIoT, ИИ-аналитика. Демонстрация: monitor.elkin.pro' },
         { name: 'Комплекс «Virtual Visit Kit»', tech: 'Удаленный аудит инфраструктуры (награждён на международном конкурсе)' },
         { name: 'Миграция в облако и ЦОД', tech: '8 серверов, 200+ сайтов, 500к+ посещений/мес' },
         { name: 'Оптимизация IT-бюджета', tech: 'Сокращение расходов на 40% (облака + телеком)' },
@@ -115,7 +115,7 @@ export const translations = {
     portfolioSection: {
       title: '>>> EXPERIENCE AND KEY PROJECTS',
       projects: [
-        { name: 'Smart Enterprise System', tech: 'Infrastructure management: Scada, BMS, IIoT, AI analytics' },
+        { name: 'Smart Enterprise System', tech: 'Infrastructure management: Scada, BMS, IIoT, AI analytics. Demo: monitor.elkin.pro' },
         { name: 'Virtual Visit Kit', tech: 'Remote infrastructure audit (awarded at international competition)' },
         { name: 'Cloud & Data Center Migration', tech: '8 servers, 200+ sites, 500k+ visits/month' },
         { name: 'IT Budget Optimization', tech: '40% cost reduction (cloud + telecom)' },
