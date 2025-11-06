@@ -34,8 +34,8 @@ export const translations = {
       title: '>>> ТЕХНИЧЕСКИЕ НАВЫКИ И ЭКСПЕРТИЗА',
       categories: [
         { name: 'Управление IT и методологии', items: ['Управление IT-отделами', 'ITSM / ITIL', 'Agile', 'Бюджетирование', 'Планирование ресурсов', 'Оптимизация процессов'] },
-        { name: 'Внедрение и разработка систем', items: ['1C (КОРП, ЗУП, УТ, ЭДО)', 'CRM', 'ECM-системы', 'ЭДО, ЭЦП', 'Мобильные приложения'] },
-        { name: 'Инфраструктура и облака', items: ['Проектирование ЛВС', 'VMWare', 'Облачный хостинг', 'Миграция в ЦОД', 'Серверы, СХД', 'Мониторинг'] },
+        { name: 'Внедрение и разработка систем', items: ['1C (КОРП, ЗУП, УТ, ЭДО)', 'CRM', 'ECM-системы', 'ЭДО, ЭЦП', 'Мобильные приложения', 'SQL'] },
+        { name: 'Инфраструктура и облака', items: ['Проектирование ЛВС', 'VMWare', 'Azure', 'Облачный хостинг', 'Миграция в ЦОД', 'Серверы, СХД', 'Мониторинг'] },
         { name: 'Кибербезопасность и СКУД', items: ['Аудит ФЗ-152', 'SIEM (FireEye Helix)', 'EDR (Kaspersky, Trend Micro, Sophos)', 'Биометрические СКУД', 'Видеонаблюдение'] },
         { name: 'Промышленные системы', items: ['SCADA', 'BMS', 'IIoT', 'O&M', 'BAS', 'DESC', 'eSight'] },
         { name: 'Оптимизация затрат', items: ['IT-бюджет', 'Аппаратное и ПО', 'Облачные сервисы', 'Телеком'] }
@@ -105,8 +105,8 @@ export const translations = {
       title: '>>> TECHNICAL SKILLS AND EXPERTISE',
       categories: [
         { name: 'IT Management & Methodologies', items: ['IT Department Management', 'ITSM / ITIL', 'Agile', 'Budgeting', 'Resource Planning', 'Process Optimization'] },
-        { name: 'System Implementation & Development', items: ['1C (KORP, ZUP, UT, EDO)', 'CRM', 'ECM Systems', 'Electronic Document Management', 'Mobile Apps'] },
-        { name: 'Infrastructure & Cloud', items: ['LAN Design', 'VMWare', 'Cloud Hosting', 'Data Center Migration', 'Servers, Storage', 'Monitoring'] },
+        { name: 'System Implementation & Development', items: ['1C (KORP, ZUP, UT, EDO)', 'CRM', 'ECM Systems', 'Electronic Document Management', 'Mobile Apps', 'SQL'] },
+        { name: 'Infrastructure & Cloud', items: ['LAN Design', 'VMWare', 'Azure', 'Cloud Hosting', 'Data Center Migration', 'Servers, Storage', 'Monitoring'] },
         { name: 'Cybersecurity & Access Control', items: ['Security Audits (152-FZ)', 'SIEM (FireEye Helix)', 'EDR (Kaspersky, Trend Micro, Sophos)', 'Biometric Access Control', 'Video Surveillance'] },
         { name: 'Industrial Systems', items: ['SCADA', 'BMS', 'IIoT', 'O&M', 'BAS', 'DESC', 'eSight'] },
         { name: 'Cost Optimization', items: ['IT Budget', 'Hardware & Software', 'Cloud Services', 'Telecom'] }
